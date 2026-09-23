@@ -32,17 +32,17 @@ export default function Navbar() {
   }, [location])
 
   const linkColor = isScrolled
-    ? 'text-text dark:text-gray-300 hover:text-primary'
-    : 'text-white/90 hover:text-white'
+    ? 'text-slate-700 dark:text-gray-300 hover:text-primary'
+    : 'text-slate-700 dark:text-white/90 hover:text-primary dark:hover:text-white'
+
+  const navBackground = isScrolled
+    ? 'bg-white/90 dark:bg-dark-navy/90 backdrop-blur-lg shadow-lg border-b border-slate-200/80 dark:border-white/10'
+    : 'bg-white/70 dark:bg-transparent border-b border-slate-200/80 dark:border-transparent backdrop-blur-lg'
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-white/90 dark:bg-dark-navy/90 backdrop-blur-lg shadow-lg'
-            : 'bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBackground}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -55,7 +55,7 @@ export default function Navbar() {
                 <div className="text-2xl font-bold bg-gradient-to-r from-primary to-deep-blue bg-clip-text text-transparent">
                   HAFTriX
                 </div>
-                <div className={`text-xs tracking-widest ${isScrolled ? 'text-muted-text dark:text-gray-400' : 'text-white/70'}`}>
+                <div className={`text-xs tracking-widest ${isScrolled ? 'text-slate-600 dark:text-gray-400' : 'text-slate-600 dark:text-white/70'}`}>
                   IT SOLUTION
                 </div>
               </div>
@@ -94,13 +94,13 @@ export default function Navbar() {
 
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg hover:bg-white/10 dark:hover:bg-gray-800 transition-colors"
+                className="lg:hidden p-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? (
-                  <X className={`h-6 w-6 ${isScrolled ? 'text-text dark:text-white' : 'text-white'}`} />
+                  <X className="h-6 w-6" />
                 ) : (
-                  <Menu className={`h-6 w-6 ${isScrolled ? 'text-text dark:text-white' : 'text-white'}`} />
+                  <Menu className="h-6 w-6" />
                 )}
               </button>
             </div>

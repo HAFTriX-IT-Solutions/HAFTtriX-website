@@ -52,14 +52,14 @@ export default function ProcessTimeline() {
             }`}
           >
             <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'} pl-16 md:pl-0`}>
-              <div className="inline-block bg-white dark:bg-navy rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="inline-block bg-white dark:bg-navy rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-slate-200 dark:border-transparent">
                 <div className="text-2xl font-bold text-primary mb-2">
                   {String(index + 1).padStart(2, '0')}
                 </div>
-                <h3 className="text-xl font-bold text-text dark:text-white mb-2">
+                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
                   {step.title}
                 </h3>
-                <p className="text-muted-text dark:text-gray-400">
+                <p className="text-slate-600 dark:text-gray-400">
                   {step.description}
                 </p>
               </div>

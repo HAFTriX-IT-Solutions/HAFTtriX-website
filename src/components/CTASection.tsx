@@ -17,7 +17,7 @@ export default function CTASection() {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Have an Idea? Let's Build It.
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl text-slate-200 mb-8">
               Tell us what you are trying to achieve and we will help turn the idea
               into a practical digital solution.
             </p>

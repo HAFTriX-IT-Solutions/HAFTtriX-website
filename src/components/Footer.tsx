@@ -14,10 +14,10 @@ export default function Footer() {
               <Shield className="h-8 w-8 text-primary" />
               <div>
                 <div className="text-xl font-bold">HAFTriX</div>
-                <div className="text-xs text-gray-400">IT SOLUTION</div>
+                <div className="text-xs text-slate-300">IT SOLUTION</div>
               </div>
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className="text-slate-300 mb-6">
               Modern technology solutions for businesses, organizations and individuals.
             </p>
             <div className="flex space-x-4">
@@ -73,13 +73,13 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><Link to="/about" className="text-gray-400 hover:text-primary transition-colors">About</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-primary transition-colors">Services</Link></li>
-              <li><Link to="/solutions" className="text-gray-400 hover:text-primary transition-colors">Solutions</Link></li>
-              <li><Link to="/projects" className="text-gray-400 hover:text-primary transition-colors">Projects</Link></li>
-              <li><Link to="/cybersecurity" className="text-gray-400 hover:text-primary transition-colors">Cybersecurity</Link></li>
-              <li><Link to="/blog" className="text-gray-400 hover:text-primary transition-colors">Blog</Link></li>
-              <li><Link to="/contact" className="text-gray-400 hover:text-primary transition-colors">Contact</Link></li>
+              <li><Link to="/about" className="text-slate-300 hover:text-primary transition-colors">About</Link></li>
+              <li><Link to="/services" className="text-slate-300 hover:text-primary transition-colors">Services</Link></li>
+              <li><Link to="/solutions" className="text-slate-300 hover:text-primary transition-colors">Solutions</Link></li>
+              <li><Link to="/projects" className="text-slate-300 hover:text-primary transition-colors">Projects</Link></li>
+              <li><Link to="/cybersecurity" className="text-slate-300 hover:text-primary transition-colors">Cybersecurity</Link></li>
+              <li><Link to="/blog" className="text-slate-300 hover:text-primary transition-colors">Blog</Link></li>
+              <li><Link to="/contact" className="text-slate-300 hover:text-primary transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -87,12 +87,12 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
-              <li><Link to="/services" className="text-gray-400 hover:text-primary transition-colors">Web Development</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-primary transition-colors">Software Development</Link></li>
-              <li><Link to="/cybersecurity" className="text-gray-400 hover:text-primary transition-colors">Cybersecurity</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-primary transition-colors">AI &amp; Machine Learning</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-primary transition-colors">IT Consulting</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-primary transition-colors">Digital Solutions</Link></li>
+              <li><Link to="/services" className="text-slate-300 hover:text-primary transition-colors">Web Development</Link></li>
+              <li><Link to="/services" className="text-slate-300 hover:text-primary transition-colors">Software Development</Link></li>
+              <li><Link to="/cybersecurity" className="text-slate-300 hover:text-primary transition-colors">Cybersecurity</Link></li>
+              <li><Link to="/services" className="text-slate-300 hover:text-primary transition-colors">AI &amp; Machine Learning</Link></li>
+              <li><Link to="/services" className="text-slate-300 hover:text-primary transition-colors">IT Consulting</Link></li>
+              <li><Link to="/services" className="text-slate-300 hover:text-primary transition-colors">Digital Solutions</Link></li>
             </ul>
           </div>
 
@@ -100,23 +100,23 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-4">
-              <li className="flex items-center space-x-2 text-gray-400">
+              <li className="flex items-center space-x-2 text-slate-300">
                 <Phone className="h-5 w-5 shrink-0" />
                 <a href={`tel:${siteConfig.phone.replace(/\s/g, '')}`} className="hover:text-primary transition-colors">
                   {siteConfig.phone}
                 </a>
               </li>
-              <li className="flex items-center space-x-2 text-gray-400">
+              <li className="flex items-center space-x-2 text-slate-300">
                 <Mail className="h-5 w-5 shrink-0" />
                 <a href={`mailto:${siteConfig.email}`} className="hover:text-primary transition-colors">
                   {siteConfig.email}
                 </a>
               </li>
-              <li className="flex items-start space-x-2 text-gray-400">
+              <li className="flex items-start space-x-2 text-slate-300">
                 <MapPin className="h-5 w-5 shrink-0 mt-0.5" />
                 <span>{siteConfig.address}</span>
               </li>
-              <li className="flex items-center space-x-2 text-gray-400">
+              <li className="flex items-center space-x-2 text-slate-300">
                 <MessageCircle className="h-5 w-5 shrink-0" />
                 <a
                   href={siteConfig.social.whatsapp}
@@ -131,15 +131,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-slate-300 text-sm">
             © {new Date().getFullYear()} HAFTriX IT Solution. All rights reserved.
           </p>
           <div className="flex items-center space-x-6">
-            <Link to="/privacy-policy" className="text-gray-400 hover:text-primary text-sm transition-colors">
+            <Link to="/privacy-policy" className="text-slate-300 hover:text-primary text-sm transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="text-gray-400 hover:text-primary text-sm transition-colors">
+            <Link to="/terms" className="text-slate-300 hover:text-primary text-sm transition-colors">
               Terms of Service
             </Link>
           </div>

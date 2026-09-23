@@ -14,9 +14,17 @@ export default defineConfig({
     open: true,
     host: true,
   },
+  preview: {
+    host: true,
+    port: 4173,
+  },
   build: {
-    target: 'es2015',
+    target: 'es2020',
     cssMinify: true,
+    sourcemap: false,
+    reportCompressedSize: false,
+    emptyOutDir: true,
+    chunkSizeWarningLimit: 1200,
     rollupOptions: {
       output: {
         manualChunks: {

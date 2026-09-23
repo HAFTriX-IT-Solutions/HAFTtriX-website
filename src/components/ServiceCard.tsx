@@ -16,7 +16,7 @@ export default function ServiceCard({ icon: Icon, title, description }: ServiceC
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ y: -8 }}
-      className="group relative p-8 rounded-2xl bg-white dark:bg-navy border border-gray-200 dark:border-gray-800 hover:border-primary/30 dark:hover:border-primary/30 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+      className="group relative p-8 rounded-2xl bg-white dark:bg-navy border border-slate-200 dark:border-gray-800 hover:border-primary/30 dark:hover:border-primary/30 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -25,11 +25,11 @@ export default function ServiceCard({ icon: Icon, title, description }: ServiceC
           <Icon className="h-8 w-8 text-white" />
         </div>
 
-        <h3 className="text-xl font-bold text-text dark:text-white mb-3 group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3 group-hover:text-primary transition-colors">
           {title}
         </h3>
 
-        <p className="text-muted-text dark:text-gray-400 mb-6">
+        <p className="text-slate-600 dark:text-gray-400 mb-6">
           {description}
         </p>
 

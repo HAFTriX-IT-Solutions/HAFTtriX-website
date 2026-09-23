@@ -25,23 +25,33 @@ export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>(emptyForm)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    if (error) {
+      setError(null)
+    }
   }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    await submitContactForm(formData)
-    setIsLoading(false)
-    setIsSubmitted(true)
+    setError(null)
 
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData(emptyForm)
-    }, 3000)
+    try {
+      await submitContactForm(formData)
+      setIsSubmitted(true)
+      setTimeout(() => {
+        setIsSubmitted(false)
+        setFormData(emptyForm)
+      }, 3000)
+    } catch (submitError) {
+      setError(submitError instanceof Error ? submitError.message : 'Unable to send your request right now. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   if (isSubmitted) {
@@ -64,6 +74,12 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/50 dark:bg-red-950/20 dark:text-red-300">
+          {error}
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium text-text dark:text-gray-300 mb-2">

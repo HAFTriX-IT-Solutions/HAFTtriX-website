@@ -24,11 +24,11 @@ export default function SectionHeading({
       {label && (
         <p className="text-primary font-semibold mb-4">{label}</p>
       )}
-      <h2 className="text-4xl md:text-5xl font-bold text-text dark:text-white mb-6">
+      <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6">
         {title}
       </h2>
       {description && (
-        <p className={`text-xl text-muted-text dark:text-gray-400 ${
+        <p className={`text-xl text-slate-600 dark:text-gray-400 ${
           align === 'center' ? 'max-w-3xl mx-auto' : 'max-w-2xl'
         }`}>
           {description}
