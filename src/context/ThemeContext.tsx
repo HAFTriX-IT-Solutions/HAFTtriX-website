@@ -8,24 +8,31 @@ interface ThemeContextType {
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
+function readInitialTheme(): boolean {
+  if (typeof document !== 'undefined') {
+    return document.documentElement.dataset.theme !== 'light'
+  }
+
+  return true
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [isDark, setIsDark] = useState<boolean>(() => {
-    if (typeof window === 'undefined') {
-      return true
-    }
-
-    const savedTheme = localStorage.getItem('theme')
-    if (savedTheme) {
-      return savedTheme === 'dark'
-    }
-
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-  })
+  const [isDark, setIsDark] = useState<boolean>(readInitialTheme)
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDark)
-    document.documentElement.style.colorScheme = isDark ? 'dark' : 'light'
-    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    const root = document.documentElement
+    const theme = isDark ? 'dark' : 'light'
+    root.dataset.theme = theme
+    root.classList.toggle('dark', isDark)
+    root.style.colorScheme = theme
+    const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
+    if (themeColor) themeColor.content = isDark ? '#0b1220' : '#dce5ee'
+
+    try {
+      window.localStorage.setItem('theme', theme)
+    } catch {
+      // Keep the selected theme for this session when storage is unavailable.
+    }
   }, [isDark])
 
   const toggleTheme = () => setIsDark(!isDark)

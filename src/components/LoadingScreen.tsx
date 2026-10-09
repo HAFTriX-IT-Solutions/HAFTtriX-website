@@ -1,45 +1,18 @@
-import { motion } from 'framer-motion'
-import { Shield } from 'lucide-react'
-
 export default function LoadingScreen() {
   return (
-    <div className="fixed inset-0 bg-dark-navy flex items-center justify-center z-[100]">
-      <motion.div
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="text-center"
-      >
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="w-20 h-20 mx-auto mb-8"
-        >
-          <Shield className="w-full h-full text-primary" />
-        </motion.div>
-
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: '200px' }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="h-1 bg-gradient-to-r from-primary to-deep-blue rounded-full mx-auto"
-        />
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-4 text-white font-medium"
-        >
-          Loading HAFTriX...
-        </motion.p>
-      </motion.div>
+    <div className="loading-screen fixed inset-0 flex items-center justify-center z-[100] overflow-hidden">
+      <div className="relative text-center px-6" data-animate="scale">
+        <div className="relative w-16 h-16 mx-auto mb-6 liquid-glass rounded-2xl p-3 flex items-center justify-center">
+          <img src="/logo.png" alt="HAFTriX IT Solutions" className="h-full w-full object-contain" />
+        </div>
+        <div className="mb-6">
+          <div className="text-xl font-serif font-medium text-slate-900 dark:text-white">HAFTriX IT Solutions</div>
+          <div className="text-[10px] tracking-[0.18em] text-slate-500 uppercase font-mono mt-1">Research &amp; Development</div>
+        </div>
+        <div className="w-36 h-0.5 mx-auto bg-slate-300/70 dark:bg-white/10 rounded-full overflow-hidden" role="progressbar" aria-label="Loading page">
+          <div className="loading-progress w-1/2 h-full bg-blue-700 dark:bg-blue-300 rounded-full" />
+        </div>
+      </div>
     </div>
   )
 }

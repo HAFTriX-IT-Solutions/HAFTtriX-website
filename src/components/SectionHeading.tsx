@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion'
-
 interface SectionHeadingProps {
   label?: string
   title: string
@@ -13,27 +11,32 @@ export default function SectionHeading({
   description,
   align = 'center',
 }: SectionHeadingProps) {
+  const isCenter = align === 'center'
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className={`mb-16 ${align === 'center' ? 'text-center' : 'text-left'}`}
+    <div
+      data-animate="fade-up"
+      className={`mb-16 md:mb-20 ${isCenter ? 'text-center' : 'text-left'}`}
     >
       {label && (
-        <p className="text-primary font-semibold mb-4">{label}</p>
+        <div className={`mb-3.5 ${isCenter ? 'flex justify-center' : ''}`}>
+          <span className="editorial-pill font-mono">
+            {label}
+          </span>
+        </div>
       )}
-      <h2 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6">
+
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-4">
         {title}
       </h2>
+
       {description && (
-        <p className={`text-xl text-slate-600 dark:text-gray-400 ${
-          align === 'center' ? 'max-w-3xl mx-auto' : 'max-w-2xl'
+        <p className={`text-base sm:text-lg text-slate-600 dark:text-slate-400 font-sans leading-relaxed ${
+          isCenter ? 'max-w-2xl mx-auto' : 'max-w-2xl'
         }`}>
           {description}
         </p>
       )}
-    </motion.div>
+    </div>
   )
 }

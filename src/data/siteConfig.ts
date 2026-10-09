@@ -1,9 +1,13 @@
 export const siteConfig = {
-  companyName: 'HAFTriX IT Solution',
-  shortName: 'HAFTriX',
-  tagline: 'Transforming Ideas Into Digital Solutions',
+  companyName: 'HAFTriX IT Solutions',
+  shortName: 'HAFTriX IT Solutions',
+  tagline: 'Research, Systems Engineering & Custom Software',
   phone: '+94 75 784 9577',
-  email: 'info@haftrix.com',
+  phoneSecondary: '+94 76 657 9358',
+  phones: ['+94 75 784 9577', '+94 76 657 9358'],
+  email: 'hi@haftrixit.dev',
+  website: 'haftrixit.dev',
+  websiteUrl: 'https://haftrixit.dev',
   address: 'Ward no-1, Nilaveli, Trincomalee, Sri Lanka',
   country: 'Sri Lanka',
   social: {

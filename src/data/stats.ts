@@ -1,6 +1,6 @@
 export const stats = [
-  { value: 20, suffix: '+', label: 'Projects Completed' },
-  { value: 10, suffix: '+', label: 'Technologies' },
-  { value: 24, suffix: '/7', label: 'Digital Availability' },
-  { value: 100, suffix: '%', label: 'Client Focus' }
+  { value: 8, suffix: '', label: 'Defined lifecycle stages, from discovery through support' },
+  { value: 5, suffix: '', label: 'Service areas across research, design, and delivery' },
+  { value: 2, suffix: '', label: 'Requirement classes: functional and non-functional' },
+  { value: 1, suffix: '', label: 'Partner through the full system lifecycle' }
 ]

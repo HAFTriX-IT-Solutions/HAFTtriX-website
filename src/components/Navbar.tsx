@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import type { CSSProperties } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Shield, ChevronRight } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
 
 const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
+  { name: 'Overview', path: '/' },
+  { name: 'R&D Process', path: '/#lifecycle' },
   { name: 'Services', path: '/services' },
   { name: 'Solutions', path: '/solutions' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Cybersecurity', path: '/cybersecurity' },
-  { name: 'Contact', path: '/contact' },
+  { name: 'Project Examples', path: '/projects' },
+  { name: 'About', path: '/about' },
 ]
 
 export default function Navbar() {
@@ -20,10 +19,9 @@ export default function Navbar() {
   const location = useLocation()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setIsScrolled(window.scrollY > 40)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -31,126 +29,114 @@ export default function Navbar() {
     setIsMobileMenuOpen(false)
   }, [location])
 
-  const linkColor = isScrolled
-    ? 'text-slate-700 dark:text-gray-300 hover:text-primary'
-    : 'text-slate-700 dark:text-white/90 hover:text-primary dark:hover:text-white'
+  useEffect(() => {
+    if (!isMobileMenuOpen) return
 
-  const navBackground = isScrolled
-    ? 'bg-white/90 dark:bg-dark-navy/90 backdrop-blur-lg shadow-lg border-b border-slate-200/80 dark:border-white/10'
-    : 'bg-white/70 dark:bg-transparent border-b border-slate-200/80 dark:border-transparent backdrop-blur-lg'
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false)
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [isMobileMenuOpen])
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBackground}`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="relative">
-                <Shield className="h-10 w-10 text-primary group-hover:scale-110 transition-transform" />
-                <div className="absolute inset-0 bg-primary/20 blur-xl group-hover:bg-primary/40 transition-all" />
-              </div>
-              <div>
-                <div className="text-2xl font-bold bg-gradient-to-r from-primary to-deep-blue bg-clip-text text-transparent">
-                  HAFTriX
-                </div>
-                <div className={`text-xs tracking-widest ${isScrolled ? 'text-slate-600 dark:text-gray-400' : 'text-slate-600 dark:text-white/70'}`}>
-                  IT SOLUTION
-                </div>
-              </div>
+      <header className={`site-header fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-3.5 px-4 sm:px-6 ${isScrolled ? 'is-scrolled' : ''}`}>
+        <div className="max-w-7xl mx-auto">
+          <nav aria-label="Primary navigation" className="site-nav liquid-glass glass-specular flex items-center justify-between rounded-2xl px-4 sm:px-5 py-3">
+            <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 rounded-lg focus-visible:ring-2" aria-label="HAFTriX IT Solutions home">
+              <span className="brand-mark relative w-9 h-9 rounded-xl overflow-hidden p-1 flex items-center justify-center bg-white/70 dark:bg-slate-800/80 border border-slate-200/50 dark:border-white/10 shadow-sm transition-transform duration-300 group-hover:scale-105 shrink-0">
+                <img src="/logo.png" alt="HAFTriX IT Solutions" className="w-full h-full object-contain" />
+              </span>
+              <span className="flex flex-col min-w-0">
+                <span className="text-sm sm:text-base font-semibold tracking-tight text-slate-900 dark:text-white leading-tight whitespace-nowrap">HAFTriX IT Solutions</span>
+                <span className="text-[9px] sm:text-[10px] tracking-[0.16em] sm:tracking-[0.22em] font-medium text-slate-500 dark:text-slate-400 uppercase mt-0.5">Research &amp; Development</span>
+              </span>
             </Link>
 
-            <div className="hidden lg:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className={`relative text-sm font-medium transition-colors ${
-                    location.pathname === item.path ? 'text-primary' : linkColor
-                  }`}
-                >
-                  {item.name}
-                  {location.pathname === item.path && (
-                    <motion.div
-                      layoutId="nav-indicator"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                    />
-                  )}
-                </Link>
-              ))}
+            <div className="hidden lg:flex items-center gap-1">
+              {navItems.map((item) => {
+                const isHash = item.path.includes('#')
+                const isActive = !isHash && location.pathname === item.path
+                const className = `editorial-link relative px-3 py-2 rounded-lg text-[12px] font-medium transition-colors ${isActive ? 'is-active text-blue-700 dark:text-blue-300' : 'text-slate-600 dark:text-slate-300 hover:text-blue-700 dark:hover:text-white'}`
+
+                return isHash ? (
+                  <a key={item.name} href={item.path} className={className}>{item.name}</a>
+                ) : (
+                  <Link key={item.name} to={item.path} className={className} aria-current={isActive ? 'page' : undefined}>{item.name}</Link>
+                )
+              })}
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <ThemeToggle />
-
-              <Link
-                to="/contact"
-                className="hidden lg:inline-flex items-center space-x-2 bg-gradient-to-r from-primary to-deep-blue text-white px-6 py-3 rounded-full font-medium hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 group"
-              >
-                <span>Start a Project</span>
-                <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <Link to="/contact" className="hidden sm:inline-flex items-center gap-1.5 text-xs btn-primary" id="navbar-cta-btn">
+                <span>Tell Us Your Problem</span>
+                <ArrowUpRight className="h-3.5 w-3.5 opacity-80" />
               </Link>
-
               <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors"
-                aria-label="Toggle menu"
+                type="button"
+                onClick={() => setIsMobileMenuOpen((open) => !open)}
+                className="lg:hidden p-2.5 rounded-xl liquid-glass text-slate-700 dark:text-slate-200 focus-visible:ring-2"
+                aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-navigation"
               >
-                {isMobileMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
             </div>
-          </div>
+          </nav>
         </div>
-      </nav>
+      </header>
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 z-40 w-full max-w-sm bg-white dark:bg-dark-navy shadow-2xl lg:hidden"
-          >
-            <div className="pt-24 pb-8 px-6 h-full overflow-y-auto">
-              <div className="space-y-2">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <Link
-                      to={item.path}
-                      className={`flex items-center justify-between p-4 rounded-xl transition-colors ${
-                        location.pathname === item.path
-                          ? 'bg-primary/10 text-primary'
-                          : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                      }`}
-                    >
-                      <span className="text-lg font-medium">{item.name}</span>
-                      <ChevronRight className="h-5 w-5 opacity-50" />
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
+      <button
+        type="button"
+        aria-label="Close navigation menu"
+        tabIndex={isMobileMenuOpen ? 0 : -1}
+        onClick={() => setIsMobileMenuOpen(false)}
+        className={`mobile-menu-backdrop lg:hidden ${isMobileMenuOpen ? 'is-open' : ''}`}
+      />
 
-              <Link
-                to="/contact"
-                className="mt-8 flex items-center justify-center space-x-2 bg-gradient-to-r from-primary to-deep-blue text-white px-6 py-4 rounded-xl font-medium hover:shadow-lg hover:shadow-primary/30 transition-all"
-              >
-                <span>Start a Project</span>
+      <aside
+        id="mobile-navigation"
+        className={`mobile-drawer liquid-glass glass-specular lg:hidden ${isMobileMenuOpen ? 'is-open' : ''}`}
+        aria-label="Mobile navigation"
+        aria-hidden={!isMobileMenuOpen}
+      >
+        <div className="flex items-center justify-between pb-5 border-b border-slate-200/60 dark:border-white/10">
+          <div className="flex items-center gap-2.5">
+            <span className="w-9 h-9 rounded-lg overflow-hidden bg-white/75 p-1 flex items-center justify-center">
+              <img src="/logo.png" alt="HAFTriX IT Solutions" className="w-full h-full object-contain" />
+            </span>
+            <span className="text-sm font-semibold text-slate-900 dark:text-white">HAFTriX IT Solutions</span>
+          </div>
+          <button type="button" onClick={() => setIsMobileMenuOpen(false)} className="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:hover:text-white focus-visible:ring-2" aria-label="Close menu">
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <nav aria-label="Mobile primary navigation" className="py-5 flex-1 space-y-1.5 overflow-y-auto">
+          {navItems.map((item, index) => {
+            const className = 'mobile-menu-link flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100/70 dark:hover:bg-white/5 transition-colors'
+            const style = { '--menu-index': index } as CSSProperties
+            return item.path.includes('#') ? (
+              <a key={item.name} href={item.path} className={className} style={style} tabIndex={isMobileMenuOpen ? 0 : -1}>
+                <span>{item.name}</span><ArrowUpRight className="h-4 w-4 opacity-40" />
+              </a>
+            ) : (
+              <Link key={item.name} to={item.path} className={className} style={style} tabIndex={isMobileMenuOpen ? 0 : -1}>
+                <span>{item.name}</span><ArrowUpRight className="h-4 w-4 opacity-40" />
               </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            )
+          })}
+        </nav>
+
+        <div className="pt-4 border-t border-slate-200/60 dark:border-white/10">
+          <Link to="/contact" className="btn-primary w-full justify-center" tabIndex={isMobileMenuOpen ? 0 : -1}>
+            <span>Tell Us Your Problem</span><ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </aside>
     </>
   )
 }

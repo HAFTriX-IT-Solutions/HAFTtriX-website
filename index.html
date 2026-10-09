@@ -1,42 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google.com https://maps.google.com; frame-src 'self' https://www.google.com https://maps.google.com; script-src 'self';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://www.google.com https://maps.google.com; frame-src 'self' https://www.google.com https://maps.google.com; script-src 'self' 'sha256-w4uKph52Mc78eBi4pSaDZIPWJC1lnlJ1GEB/hQSk9UQ=';" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
-    <link rel="apple-touch-icon" href="/logo.jpg" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo-192.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="https://haftrixit.dev/" />
+
+    <script>
+      (() => {
+        const root = document.documentElement
+        let theme = 'dark'
+        try {
+          const savedTheme = window.localStorage.getItem('theme')
+          if (savedTheme === 'light' || savedTheme === 'dark') theme = savedTheme
+        } catch {
+          // Storage can be unavailable; the dark default still applies.
+        }
+        root.dataset.theme = theme
+        root.classList.toggle('dark', theme === 'dark')
+        root.style.colorScheme = theme
+      })()
+    </script>
 
     <!-- Primary Meta -->
-    <title>HAFTriX IT Solution | Software, Web &amp; Cybersecurity Solutions</title>
-    <meta name="description" content="HAFTriX IT Solution delivers modern software, web development, cybersecurity, AI and digital technology solutions designed to help businesses in Sri Lanka and beyond grow, operate smarter and stay secure." />
-    <meta name="keywords" content="HAFTriX, IT Solution, Web Development, Software Development, Cybersecurity, AI, Machine Learning, Sri Lanka, Trincomalee, IT Consulting, Digital Solutions" />
-    <meta name="author" content="HAFTriX IT Solution" />
+    <title>HAFTriX IT Solutions | Research &amp; Development, Systems Engineering &amp; Custom Software</title>
+    <meta name="description" content="HAFTriX IT Solutions is a research and development partner delivering needs analysis, requirements engineering, custom software systems, and end-to-end technology solutions." />
+    <meta name="author" content="HAFTriX IT Solutions" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0f1923" />
+    <meta name="theme-color" content="#0b1220" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.haftrix.com/" />
-    <meta property="og:title" content="HAFTriX IT Solution | Software, Web &amp; Cybersecurity Solutions" />
-    <meta property="og:description" content="Modern technology solutions for businesses — Web, Software, Cybersecurity, AI and IT Consulting from Sri Lanka." />
-    <meta property="og:image" content="https://www.haftrix.com/logo.jpg" />
+    <meta property="og:url" content="https://haftrixit.dev/" />
+    <meta property="og:title" content="HAFTriX IT Solutions | Research &amp; Development Partner" />
+    <meta property="og:description" content="A research-led engineering partner handling the full lifecycle: problem framing, needs analysis, requirements, system design, software development, and support." />
+    <meta property="og:image" content="https://haftrixit.dev/logo.png" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="HAFTriX IT Solution" />
+    <meta property="og:site_name" content="HAFTriX IT Solutions" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://www.haftrix.com/" />
-    <meta name="twitter:title" content="HAFTriX IT Solution | Software, Web &amp; Cybersecurity" />
-    <meta name="twitter:description" content="Modern technology solutions for businesses — Web, Software, Cybersecurity, AI and IT Consulting." />
-    <meta name="twitter:image" content="https://www.haftrix.com/logo.jpg" />
+    <meta name="twitter:url" content="https://haftrixit.dev/" />
+    <meta name="twitter:title" content="HAFTriX IT Solutions | Research &amp; Development Partner" />
+    <meta name="twitter:description" content="A research-led engineering partner handling the full lifecycle: problem framing, needs analysis, requirements, system design, software development, and support." />
+    <meta name="twitter:image" content="https://haftrixit.dev/logo.png" />
 
-    <!-- Google Fonts -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "HAFTriX IT Solutions",
+        "url": "https://haftrixit.dev/",
+        "logo": "https://haftrixit.dev/logo.png",
+        "email": "hi@haftrixit.dev",
+        "telephone": "+94 75 784 9577",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+94 75 784 9577",
+            "contactType": "client partnerships"
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+94 76 657 9358",
+            "contactType": "technical consulting"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Ward no-1, Nilaveli",
+          "addressLocality": "Trincomalee",
+          "addressCountry": "LK"
+        },
+        "sameAs": [
+          "https://facebook.com/haftrix",
+          "https://instagram.com/haftrix",
+          "https://linkedin.com/company/haftrix"
+        ]
+      }
+    </script>
+
+    <!-- Google Fonts: Editorial Serif + Modern Humanist Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>

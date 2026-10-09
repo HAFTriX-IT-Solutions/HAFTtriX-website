@@ -1,83 +1,79 @@
-import { Globe, Code2, Shield, BrainCircuit, Monitor, Layers3 } from 'lucide-react'
+import { Search, Code2, PenTool, FileText, GraduationCap } from 'lucide-react'
 
 export const services = [
   {
-    name: 'Web Development',
-    icon: Globe,
+    id: 'research-analysis',
+    name: 'Research & Needs Analysis',
+    tagline: 'Understanding root problems before writing a single line of code.',
+    icon: Search,
+    deliverables: ['Stakeholder Needs Analysis Report', 'Feasibility Assessment', 'Functional & Non-Functional Requirements Specification'],
     details: [
-      'Corporate websites',
-      'Business websites',
-      'E-commerce platforms',
-      'Booking systems',
-      'Web applications',
-      'Responsive UI/UX',
-      'Performance optimization',
-      'SEO-friendly development'
+      'Problem framing & operational discovery',
+      'Stakeholder interviews & user workflow research',
+      'Market review & technological feasibility analysis',
+      'Requirements engineering (FR & NFR matrices)',
+      'Data-driven evaluation & architecture trade-offs',
+      'Risk modeling & constraint identification'
     ]
   },
   {
-    name: 'Software Development',
+    id: 'software-development',
+    name: 'Custom Software Development',
+    tagline: 'Engineered web platforms, APIs, and scalable production systems.',
     icon: Code2,
+    deliverables: ['Production-Grade Software', 'Documented REST/GraphQL APIs', 'Scalable Database Schemas'],
     details: [
-      'Custom business software',
-      'Management systems',
-      'POS systems',
-      'Inventory systems',
-      'Attendance systems',
-      'Booking management systems',
-      'REST APIs',
-      'Database-driven applications'
+      'Custom web platforms & enterprise portals',
+      'Full-stack applications & microservices',
+      'Database architecture & relational modeling',
+      'Integration with existing operational tools & APIs',
+      'Automated testing suites & CI/CD workflows',
+      'High-performance backend systems'
     ]
   },
   {
-    name: 'Cybersecurity',
-    icon: Shield,
+    id: 'system-ux-design',
+    name: 'System Architecture & UX Design',
+    tagline: 'Map user journeys alongside the architecture that supports them.',
+    icon: PenTool,
+    deliverables: ['Interactive High-Fidelity Prototype', 'Design System & Component Library', 'System Architecture Diagram'],
     details: [
-      'Vulnerability assessment',
-      'Web application security testing',
-      'Security auditing',
-      'Network security assessment',
-      'OWASP-based security assessment',
-      'Security awareness',
-      'Security hardening',
-      'Incident response guidance'
+      'Information architecture & state machine mapping',
+      'Wireframing & user journey orchestration',
+      'Interactive design systems & UI component kits',
+      'Usability testing & feedback validation',
+      'Responsive design across viewport spectrums',
+      'Accessibility & WCAG compliance audits'
     ]
   },
   {
-    name: 'AI & Machine Learning',
-    icon: BrainCircuit,
+    id: 'technical-documentation',
+    name: 'Technical Writing & Documentation',
+    tagline: 'Specifications and operating guides that preserve how the system works.',
+    icon: FileText,
+    deliverables: ['Comprehensive System Specification', 'Interactive API Reference', 'Operational Runbooks & SOPs'],
     details: [
-      'Machine learning applications',
-      'AI-powered automation',
-      'Predictive analytics',
-      'Computer vision',
-      'Natural language processing',
-      'Intelligent recommendation systems',
-      'AI proof-of-concepts'
+      'Formal software requirements specifications (SRS)',
+      'API documentation & schema definitions (OpenAPI/Swagger)',
+      'Infrastructure runbooks & deployment manuals',
+      'User guides & administrative manuals',
+      'Data flow diagrams & entity relationship blueprints',
+      'Audit-ready technical handoff documentation'
     ]
   },
   {
-    name: 'IT Consulting',
-    icon: Monitor,
+    id: 'training-transfer',
+    name: 'Training & Knowledge Transfer',
+    tagline: 'Prepare internal teams to run, maintain, and extend the system.',
+    icon: GraduationCap,
+    deliverables: ['Hands-on Training Workshops', 'Recorded Video Walkthroughs', 'Team Onboarding Roadmap'],
     details: [
-      'Technology strategy',
-      'System architecture',
-      'Cloud guidance',
-      'Software selection',
-      'Digital transformation',
-      'IT infrastructure planning'
-    ]
-  },
-  {
-    name: 'Digital Solutions',
-    icon: Layers3,
-    details: [
-      'Digital business solutions',
-      'Workflow automation',
-      'Online booking systems',
-      'Customer-facing platforms',
-      'Business process digitization',
-      'API integrations'
+      'Structured technical handoff to in-house engineers',
+      'Administrative & end-user training sessions',
+      'Operational guidelines & troubleshooting guides',
+      'Best practice mentoring & code walkthroughs',
+      'Post-deployment advisory & stabilization support',
+      'Continuous maintenance & evolution roadmaps'
     ]
   }
 ]

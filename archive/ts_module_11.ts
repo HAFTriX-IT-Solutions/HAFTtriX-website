@@ -1,6 +1,6 @@
 export const siteConfig = {
-  companyName: 'HAFTriX IT Solution',
-  shortName: 'HAFTriX',
+  companyName: 'HAFTriX IT Solutions',
+  shortName: 'HAFTriX IT Solutions',
   tagline: 'Transforming Ideas Into Digital Solutions',
   phone: '+94 75 784 9577',
   email: 'info@haftrix.com',

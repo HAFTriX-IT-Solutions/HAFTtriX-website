@@ -1,35 +1,59 @@
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowUpRight, MessageSquare, MessageCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { siteConfig } from '../data/siteConfig'
 
 export default function CTASection() {
   return (
-    <section className="py-20 bg-ivory dark:bg-dark-navy">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-br from-dark-navy via-navy to-deep-blue rounded-3xl p-12 md:p-16 relative overflow-hidden"
+    <section className="section-padding relative overflow-hidden">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          data-animate="fade-up"
+          className="liquid-glass glass-specular rounded-3xl p-8 sm:p-12 md:p-16 text-center relative overflow-hidden"
         >
-          <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Have an Idea? Let's Build It.
-            </h2>
-            <p className="text-xl text-slate-200 mb-8">
-              Tell us what you are trying to achieve and we will help turn the idea
-              into a practical digital solution.
-            </p>
+          <div className="mb-4 flex justify-center">
+            <span className="editorial-pill font-mono">
+              Discovery &amp; Consultation
+            </span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium text-slate-900 dark:text-white mb-5 max-w-2xl mx-auto leading-[1.15]">
+            Describe the problem. We will architect the solution.
+          </h2>
+
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed font-sans">
+            Whether you are dealing with separate operational tools, manual handoffs, or a new
+            software platform, start with a conversation about the problem, constraints, and a practical next step.
+          </p>
+
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link
               to="/contact"
-              className="inline-flex items-center space-x-2 bg-gradient-to-r from-accent to-primary text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 transform hover:scale-105"
+              className="btn-primary inline-flex items-center gap-2"
+              id="cta-tell-us-problem-btn"
             >
-              <span>Talk to HAFTriX</span>
-              <ArrowRight className="h-5 w-5" />
+              <MessageSquare className="h-4 w-4" />
+              <span>Tell Us Your Problem</span>
+              <ArrowUpRight className="h-4 w-4 opacity-75" />
             </Link>
+
+            <a
+              href={siteConfig.social.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary inline-flex items-center gap-2"
+              id="cta-whatsapp-direct-btn"
+            >
+              <MessageCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <span>Direct WhatsApp Discussion</span>
+            </a>
           </div>
-        </motion.div>
+
+          <div className="mt-8 pt-8 border-t border-slate-200/50 dark:border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-mono">
+            <span>✓ Confidential Problem Assessment</span>
+            <span>✓ No Commitments Required</span>
+            <span>✓ Direct Technical Dialogue</span>
+          </div>
+        </div>
       </div>
     </section>
   )

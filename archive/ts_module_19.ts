@@ -25,7 +25,7 @@ export default function CTASection() {
               to="/contact"
               className="inline-flex items-center space-x-2 bg-gradient-to-r from-accent to-primary text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl hover:shadow-accent/30 transition-all duration-300 transform hover:scale-105"
             >
-              <span>Talk to HAFTriX</span>
+              <span>Talk to HAFTriX IT Solutions</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
           </div>

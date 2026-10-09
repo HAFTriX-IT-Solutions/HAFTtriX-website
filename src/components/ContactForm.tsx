@@ -1,6 +1,5 @@
 import { FormEvent, ChangeEvent, useState } from 'react'
-import { motion } from 'framer-motion'
-import { Send, CheckCircle } from 'lucide-react'
+import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 import { submitContactForm } from '../lib/api'
 
 interface FormData {
@@ -16,10 +15,20 @@ const emptyForm: FormData = {
   fullName: '',
   email: '',
   phone: '',
-  service: 'Web Development',
-  budget: 'Not sure yet',
+  service: 'Research & Needs Analysis',
+  budget: 'Evaluating requirements first',
   message: '',
 }
+
+const inputClass = `
+  w-full px-4 py-3 rounded-xl text-sm
+  liquid-glass
+  text-slate-900 dark:text-white
+  placeholder-slate-400 dark:placeholder-slate-500
+  transition-all duration-200
+`.trim()
+
+const labelClass = 'block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2 font-medium'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>(emptyForm)
@@ -30,9 +39,7 @@ export default function ContactForm() {
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-    if (error) {
-      setError(null)
-    }
+    if (error) setError(null)
   }
 
   const handleSubmit = async (e: FormEvent) => {
@@ -46,9 +53,9 @@ export default function ContactForm() {
       setTimeout(() => {
         setIsSubmitted(false)
         setFormData(emptyForm)
-      }, 3000)
+      }, 5000)
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : 'Unable to send your request right now. Please try again.')
+      setError(submitError instanceof Error ? submitError.message : 'Unable to transmit your problem brief. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -56,146 +63,166 @@ export default function ContactForm() {
 
   if (isSubmitted) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="text-center p-8 bg-green-50 dark:bg-green-900/20 rounded-2xl"
+      <div
+        data-animate="scale"
+        role="status"
+        className="flex flex-col items-center justify-center text-center py-12 liquid-glass rounded-2xl p-8"
       >
-        <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-text dark:text-white mb-2">
-          Thank You!
+        <div className="w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-5 text-blue-600 dark:text-blue-400">
+          <CheckCircle2 className="h-8 w-8" />
+        </div>
+        <h3 className="text-2xl font-serif font-medium text-slate-900 dark:text-white mb-2">
+          Problem Brief Received
         </h3>
-        <p className="text-muted-text dark:text-gray-400">
-          Your project request has been received. We'll get back to you shortly.
+        <p className="text-slate-600 dark:text-slate-400 text-sm max-w-md font-sans leading-relaxed">
+          Thank you for outlining your requirements. We will review the brief and follow up about the need and a practical next step.
         </p>
-      </motion.div>
+      </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+      {/* Error notification */}
       {error && (
-        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/50 dark:bg-red-950/20 dark:text-red-300">
-          {error}
-        </div>
+          <div
+            data-animate="fade-in"
+            role="alert"
+            className="form-alert flex items-start gap-3 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-700 dark:text-rose-300"
+          >
+            <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5" />
+            <span>{error}</span>
+          </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium text-text dark:text-gray-300 mb-2">
-            Full Name *
+      {/* Name + Email */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="form-field">
+          <label className={`${labelClass} floating-label`} htmlFor="cf-fullName">
+            Your Name / Title *
           </label>
           <input
+            id="cf-fullName"
             type="text"
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg bg-white dark:bg-navy border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors"
-            placeholder="John Doe"
+            className={`${inputClass} form-field-control`}
+            placeholder=" "
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-text dark:text-gray-300 mb-2">
-            Email Address *
+        <div className="form-field">
+          <label className={`${labelClass} floating-label`} htmlFor="cf-email">
+            Organizational Email *
           </label>
           <input
+            id="cf-email"
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg bg-white dark:bg-navy border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors"
-            placeholder="john@example.com"
+            className={`${inputClass} form-field-control`}
+            placeholder=" "
           />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label className="block text-sm font-medium text-text dark:text-gray-300 mb-2">
-            Phone Number
+      {/* Phone + Capability Needed */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="form-field">
+          <label className={`${labelClass} floating-label`} htmlFor="cf-phone">
+            Direct Contact Number
           </label>
           <input
+            id="cf-phone"
             type="tel"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg bg-white dark:bg-navy border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors"
-            placeholder="+94 75 784 9577"
+            className={`${inputClass} form-field-control`}
+            placeholder=" "
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-text dark:text-gray-300 mb-2">
-            Required Service *
+          <label className={labelClass} htmlFor="cf-service">
+            Primary Area of Inquiry *
           </label>
           <select
+            id="cf-service"
             name="service"
             value={formData.service}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 rounded-lg bg-white dark:bg-navy border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors"
+            className={`${inputClass} cursor-pointer`}
           >
-            <option>Web Development</option>
-            <option>Software Development</option>
-            <option>Cybersecurity</option>
-            <option>AI & Machine Learning</option>
-            <option>IT Consulting</option>
-            <option>Digital Solution</option>
-            <option>Other</option>
+            <option value="Research & Needs Analysis">Research &amp; Needs Analysis</option>
+            <option value="Custom Software Development">Custom Software Development</option>
+            <option value="System Architecture & UX Design">System Architecture &amp; UX Design</option>
+            <option value="Technical Writing & Documentation">Technical Writing &amp; Documentation</option>
+            <option value="Training & Knowledge Transfer">Training &amp; Knowledge Transfer</option>
+            <option value="Full Lifecycle R&D Partnership">Full Lifecycle R&amp;D Partnership</option>
+            <option value="Other Technical Problem">Other Technical Problem</option>
           </select>
         </div>
       </div>
 
+      {/* Budget Planning */}
       <div>
-        <label className="block text-sm font-medium text-text dark:text-gray-300 mb-2">
-          Estimated Budget
+        <label className={labelClass} htmlFor="cf-budget">
+          Anticipated Project Scope / Budget Framework
         </label>
         <select
+          id="cf-budget"
           name="budget"
           value={formData.budget}
           onChange={handleChange}
-          className="w-full px-4 py-3 rounded-lg bg-white dark:bg-navy border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors"
+          className={`${inputClass} cursor-pointer`}
         >
-          <option>Not sure yet</option>
-          <option>Under LKR 50,000</option>
-          <option>LKR 50,000 - 100,000</option>
-          <option>LKR 100,000 - 250,000</option>
-          <option>Above LKR 250,000</option>
+          <option value="Evaluating requirements first">Evaluating requirements first (Discovery Phase)</option>
+          <option value="LKR 150,000 - 350,000">Small Dedicated Module (LKR 150,000 - 350,000)</option>
+          <option value="LKR 350,000 - 750,000">Mid-Scale Platform (LKR 350,000 - 750,000)</option>
+          <option value="Above LKR 750,000">Enterprise / Institutional Architecture (Above LKR 750,000)</option>
+          <option value="International Retainer">International / Foreign Currency Engagement</option>
         </select>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-text dark:text-gray-300 mb-2">
-          Tell us about your project *
+      {/* Message */}
+      <div className="form-field">
+        <label className={`${labelClass} floating-label`} htmlFor="cf-message">
+          Describe the problem or workflow *
         </label>
         <textarea
+          id="cf-message"
           name="message"
           value={formData.message}
           onChange={handleChange}
           required
           rows={5}
-          className="w-full px-4 py-3 rounded-lg bg-white dark:bg-navy border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors resize-none"
-          placeholder="Describe your project requirements, goals, and timeline..."
+          className={`${inputClass} form-field-control resize-none`}
+          placeholder=" "
         />
       </div>
 
+      {/* Submit button */}
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-primary to-deep-blue text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+        id="contact-submit-btn"
       >
         {isLoading ? (
           <>
-            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-            <span>Sending...</span>
+            <Loader2 className="h-4 w-4 animate-spin" />
+            <span>Analyzing &amp; Transmitting...</span>
           </>
         ) : (
           <>
-            <Send className="h-5 w-5" />
-            <span>Send Project Request</span>
+            <Send className="h-4 w-4" />
+            <span>Submit Problem Brief for Review</span>
           </>
         )}
       </button>

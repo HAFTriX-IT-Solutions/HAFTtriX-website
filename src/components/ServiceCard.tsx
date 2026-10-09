@@ -1,46 +1,87 @@
 import { ComponentType } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import type { CSSProperties } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 interface ServiceCardProps {
+  id?: string
   icon: ComponentType<{ className?: string }>
   title: string
-  description: string
+  tagline?: string
+  description?: string
+  deliverables?: string[]
+  index?: number
+  layoutClass?: string
 }
 
-export default function ServiceCard({ icon: Icon, title, description }: ServiceCardProps) {
+export default function ServiceCard({
+  id = 'services',
+  icon: Icon,
+  title,
+  tagline,
+  description,
+  deliverables,
+  index = 0,
+  layoutClass = '',
+}: ServiceCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -8 }}
-      className="group relative p-8 rounded-2xl bg-white dark:bg-navy border border-slate-200 dark:border-gray-800 hover:border-primary/30 dark:hover:border-primary/30 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
+    <div
+      data-animate="fade-up"
+      style={{ '--reveal-index': index } as CSSProperties}
+      className={`group liquid-glass liquid-glass-interactive glass-specular rounded-2xl p-7 md:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 ${layoutClass}`}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-      <div className="relative z-10">
-        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-deep-blue flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-          <Icon className="h-8 w-8 text-white" />
+      <div>
+        <div className="flex items-center justify-between mb-6">
+          <div className="w-12 h-12 rounded-xl liquid-glass flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform duration-300">
+            <Icon className="h-5 w-5" />
+          </div>
+          <span className="font-mono text-xs text-slate-400">
+            0{index + 1}
+          </span>
         </div>
 
-        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3 group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-serif font-medium text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
           {title}
         </h3>
 
-        <p className="text-slate-600 dark:text-gray-400 mb-6">
+        {tagline && (
+          <p className="text-xs font-medium text-blue-600 dark:text-blue-400 mb-3">
+            {tagline}
+          </p>
+        )}
+
+        <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6 font-sans">
           {description}
         </p>
 
+        {deliverables && deliverables.length > 0 && (
+          <div className="space-y-2 mb-6 pt-4 border-t border-slate-200/50 dark:border-white/10">
+            <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
+              Sample Deliverables
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {deliverables.map((item) => (
+                <span
+                  key={item}
+                  className="deliverable-badge"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="pt-4 border-t border-slate-200/40 dark:border-white/5 flex items-center justify-between">
         <Link
-          to="/services"
-          className="flex items-center text-primary font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+          to={`/services#${id}`}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
         >
-          <span>Learn More</span>
-          <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+          <span>Explore Service Scope</span>
+          <ArrowUpRight className="h-3.5 w-3.5" />
         </Link>
       </div>
-    </motion.div>
+    </div>
   )
 }

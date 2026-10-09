@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { useInView } from 'framer-motion'
 
 interface CounterProps {
   value: number
@@ -7,36 +6,44 @@ interface CounterProps {
   duration?: number
 }
 
-export default function Counter({ value, suffix = '', duration = 2000 }: CounterProps) {
+export default function Counter({ value, suffix = '', duration = 1400 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true })
+  const started = useRef(false)
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    if (isInView) {
-      let startTime: number | undefined
-      let animationFrame: number
+    const element = ref.current
+    if (!element) return
 
-      const animate = (timestamp: number) => {
-        if (!startTime) startTime = timestamp
-        const progress = (timestamp - startTime) / duration
+    let frame = 0
+    const startCount = () => {
+      if (started.current) return
+      started.current = true
 
-        if (progress < 1) {
-          setCount(Math.floor(value * progress))
-          animationFrame = requestAnimationFrame(animate)
-        } else {
-          setCount(value)
-        }
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setCount(value)
+        return
       }
 
-      animationFrame = requestAnimationFrame(animate)
-      return () => cancelAnimationFrame(animationFrame)
+      let startTime: number | undefined
+      const animate = (timestamp: number) => {
+        if (startTime === undefined) startTime = timestamp
+        const progress = Math.min(1, (timestamp - startTime) / duration)
+        setCount(Math.floor(value * progress))
+        if (progress < 1) frame = window.requestAnimationFrame(animate)
+        else setCount(value)
+      }
+      frame = window.requestAnimationFrame(animate)
     }
-  }, [isInView, value, duration])
 
-  return (
-    <span ref={ref}>
-      {count}{suffix}
-    </span>
-  )
+    element.addEventListener('site:reveal', startCount)
+    if (element.classList.contains('is-visible')) startCount()
+
+    return () => {
+      element.removeEventListener('site:reveal', startCount)
+      if (frame) window.cancelAnimationFrame(frame)
+    }
+  }, [duration, value])
+
+  return <span ref={ref} data-animate="fade-in" data-count-up>{count}{suffix}</span>
 }

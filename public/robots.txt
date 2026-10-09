@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://haftrixit.dev/sitemap.xml

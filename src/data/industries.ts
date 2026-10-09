@@ -2,46 +2,46 @@ export const industries = [
   {
     name: 'Tourism & Hospitality',
     solutions: [
-      'Hotel websites',
-      'Tour booking platforms',
-      'Online reservation systems',
-      'Tourism management platforms'
+      'Property management & reservation engines',
+      'Multi-channel inventory synchronization',
+      'Staff scheduling & task dispatch systems',
+      'Guest experience & multilingual booking portals'
     ]
   },
   {
-    name: 'Retail & E-commerce',
+    name: 'Retail & Commerce',
     solutions: [
-      'E-commerce websites',
-      'POS systems',
-      'Inventory management',
-      'Customer management'
+      'High-throughput point of sale (POS) architectures',
+      'Multi-branch inventory reconciliation',
+      'Supplier integration & batch ordering workflows',
+      'Customer loyalty & transaction analytics'
     ]
   },
   {
-    name: 'Education',
+    name: 'Education & Academics',
     solutions: [
-      'Learning platforms',
-      'Student management systems',
-      'Attendance systems',
-      'Educational websites'
+      'Institutional student information systems',
+      'Curriculum & rubric-based assessment portals',
+      'Low-bandwidth accessible e-learning platforms',
+      'Digital credentialing & attendance management'
     ]
   },
   {
-    name: 'Professional Services',
+    name: 'Healthcare & Diagnostics',
     solutions: [
-      'Corporate websites',
-      'Appointment systems',
-      'Customer portals',
-      'Business automation'
+      'Clinical laboratory data management portals',
+      'Patient scheduling & report dispatch systems',
+      'Analyzer telemetry ingestion pipelines',
+      'Diagnostic audit trails & verification workflows'
     ]
   },
   {
-    name: 'Organizations',
+    name: 'Enterprise & Public Sector',
     solutions: [
-      'Internal management systems',
-      'Digital workflow solutions',
-      'Information systems',
-      'Cybersecurity solutions'
+      'Citizen service delivery & ticketing portals',
+      'Cross-departmental workflow automation',
+      'Data-driven operational intelligence dashboards',
+      'Document archival & requirements governance systems'
     ]
   }
 ]

@@ -1,111 +1,137 @@
-import { motion } from 'framer-motion'
-import { ArrowRight, Github, ExternalLink } from 'lucide-react'
+import type { CSSProperties } from 'react'
+import { ArrowUpRight, CheckCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { ProjectCaseStudy } from '../data/projects'
 
 interface ProjectCardProps {
   id: number
   title?: string
-  description?: string
+  clientContext?: string
+  problem?: string
+  outcome?: string
   technologies?: string[]
   category?: string
-  link?: string
-  github?: string
+  deliverables?: string[]
+  project?: ProjectCaseStudy
+  layoutClass?: string
 }
 
 export default function ProjectCard({
   id,
-  title = 'Project Title',
-  description = 'A brief description of the project and the value it delivered.',
-  technologies = ['React', 'Node.js', 'PostgreSQL'],
-  category = 'Web Application',
-  link,
-  github,
+  title = 'Project Brief',
+  clientContext,
+  problem,
+  outcome,
+  technologies = [],
+  category = 'Project Example',
+  deliverables = [],
+  project,
+  layoutClass = ''
 }: ProjectCardProps) {
-  const hasLiveLink = link && link !== '#'
-  const hasGithubLink = github && github !== '#'
+  const displayTitle = project?.title || title
+  const displayContext = project?.clientContext || clientContext
+  const displayProblem = project?.problem || problem
+  const displayOutcome = project?.outcome || outcome
+  const displayTech = project?.technologies || technologies
+  const displayCategory = project?.category || category
+  const displayDeliverables = project?.deliverables || deliverables
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -8 }}
-      className="group relative bg-white dark:bg-navy rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+    <div
+      data-animate="fade-up"
+      style={{ '--reveal-index': (id - 1) % 7 } as CSSProperties}
+      className={`group liquid-glass liquid-glass-interactive glass-specular rounded-2xl p-7 md:p-8 flex flex-col justify-between transition-all duration-300 ${layoutClass}`}
     >
-      <div className="relative h-48 bg-gradient-to-br from-primary/20 to-deep-blue/20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-dark-navy to-deep-blue opacity-90" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-6xl font-bold text-white/20">H{id}</span>
+      <div>
+        {/* Header meta */}
+        <div className="flex items-center justify-between gap-3 mb-4">
+          <span className="editorial-pill font-mono text-[11px]">
+            {displayCategory}
+          </span>
+          <span className="font-mono text-xs text-slate-400">
+              Brief 0{id}
+          </span>
         </div>
 
-        <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-lg px-3 py-1 rounded-full text-sm text-white">
-          {category}
-        </div>
-      </div>
-
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-text dark:text-white mb-2 group-hover:text-primary transition-colors">
-          {title}
+        {/* Title */}
+        <h3 className="text-xl md:text-2xl font-serif font-medium text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          {displayTitle}
         </h3>
 
-        <p className="text-muted-text dark:text-gray-400 mb-4">
-          {description}
-        </p>
+        {displayContext && (
+          <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 font-mono">
+            {displayContext}
+          </p>
+        )}
 
-        <div className="flex flex-wrap gap-2 mb-4">
-          {technologies.map((tech) => (
+        {/* Problem framing */}
+        {displayProblem && (
+          <div className="mb-4">
+            <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
+              Problem Framed
+            </span>
+            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans line-clamp-2">
+              {displayProblem}
+            </p>
+          </div>
+        )}
+
+        {/* Outcome */}
+        {displayOutcome && (
+          <div className="mb-5 p-3 rounded-xl bg-blue-500/5 dark:bg-blue-400/5 border border-blue-500/10 dark:border-white/5">
+            <span className="text-[11px] font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 flex items-center gap-1.5 mb-1 font-semibold">
+              <CheckCircle className="h-3 w-3" />
+              Proposed Result
+            </span>
+            <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+              {displayOutcome}
+            </p>
+          </div>
+        )}
+
+        {/* Deliverables snippet */}
+        {displayDeliverables && displayDeliverables.length > 0 && (
+          <div className="mb-5">
+            <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1.5">
+              Key Deliverables
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {displayDeliverables.slice(0, 2).map((item) => (
+                <span key={item} className="deliverable-badge text-[10px]">
+                  {item}
+                </span>
+              ))}
+              {displayDeliverables.length > 2 && (
+                <span className="deliverable-badge text-[10px]">
+                  +{displayDeliverables.length - 2} more
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Tech stack */}
+        <div className="flex flex-wrap gap-1 mb-6">
+          {displayTech.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1 bg-ivory dark:bg-dark-navy text-sm text-muted-text dark:text-gray-300 rounded-full"
+              className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-white/5"
             >
               {tech}
             </span>
           ))}
         </div>
-
-        <div className="flex items-center justify-between">
-          <div className="flex space-x-2">
-            {hasGithubLink ? (
-              <a
-                href={github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View on GitHub"
-                className="p-2 rounded-lg bg-ivory dark:bg-dark-navy hover:bg-primary/10 transition-colors"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-            ) : (
-              <span className="p-2 rounded-lg bg-ivory dark:bg-dark-navy opacity-40 cursor-not-allowed" title="Repository not available">
-                <Github className="h-5 w-5" />
-              </span>
-            )}
-            {hasLiveLink ? (
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View live site"
-                className="p-2 rounded-lg bg-ivory dark:bg-dark-navy hover:bg-primary/10 transition-colors"
-              >
-                <ExternalLink className="h-5 w-5" />
-              </a>
-            ) : (
-              <span className="p-2 rounded-lg bg-ivory dark:bg-dark-navy opacity-40 cursor-not-allowed" title="Live demo not available">
-                <ExternalLink className="h-5 w-5" />
-              </span>
-            )}
-          </div>
-
-          <Link
-            to={`/projects/${id}`}
-            className="flex items-center text-primary font-medium group-hover:translate-x-1 transition-transform"
-          >
-            <span>View Details</span>
-            <ArrowRight className="h-4 w-4 ml-1" />
-          </Link>
-        </div>
       </div>
-    </motion.div>
+
+      <div className="pt-4 border-t border-slate-200/40 dark:border-white/5 flex items-center justify-between">
+        <Link
+          to={`/projects/${id}`}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+        >
+          <span>Review Project Brief</span>
+          <ArrowUpRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+        </Link>
+      </div>
+    </div>
   )
 }

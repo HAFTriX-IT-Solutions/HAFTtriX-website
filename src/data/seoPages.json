@@ -1,0 +1,34 @@
+{
+  "/": {
+    "title": "HAFTriX IT Solutions | Research & Development, Systems Engineering & Custom Software",
+    "description": "HAFTriX IT Solutions is a research and development partner delivering needs analysis, requirements engineering, custom software systems, and end-to-end technology solutions."
+  },
+  "/about": {
+    "title": "About HAFTriX IT Solutions | Research-Led Systems Engineering",
+    "description": "Learn how HAFTriX IT Solutions frames problems, studies stakeholder needs, defines requirements, and delivers custom software systems."
+  },
+  "/services": {
+    "title": "Research, Analysis & Software Services | HAFTriX IT Solutions",
+    "description": "Explore research and needs analysis, feasibility studies, custom software development, system design, technical documentation, and training from HAFTriX IT Solutions."
+  },
+  "/solutions": {
+    "title": "Industry Systems & Architecture | HAFTriX IT Solutions",
+    "description": "HAFTriX IT Solutions studies industry workflows and operating constraints before shaping software architecture and data systems."
+  },
+  "/projects": {
+    "title": "Project Examples & Systems Engineering | HAFTriX IT Solutions",
+    "description": "Explore representative project briefs showing problem framing, needs analysis, requirements engineering, and software delivery from HAFTriX IT Solutions."
+  },
+  "/blog": {
+    "title": "Research Notes & Engineering Essays | HAFTriX IT Solutions",
+    "description": "Read practical notes from HAFTriX IT Solutions on stakeholder research, requirements, system design, and custom software development."
+  },
+  "/contact": {
+    "title": "Discuss Your Problem | HAFTriX IT Solutions",
+    "description": "Contact HAFTriX IT Solutions to discuss operational needs, feasibility, system requirements, and software goals."
+  },
+  "/privacy-policy": {
+    "title": "Privacy Policy | HAFTriX IT Solutions",
+    "description": "Read the privacy policy for HAFTriX IT Solutions and learn how contact inquiries are handled."
+  }
+}

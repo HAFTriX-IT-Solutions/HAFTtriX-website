@@ -1,39 +1,44 @@
-import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Home, ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Home } from 'lucide-react'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-ivory dark:bg-dark-navy pt-20">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="text-center"
+    <div className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+      <div
+        data-animate="fade-up"
+        className="relative z-10 text-center px-4 max-w-lg mx-auto"
       >
-        <h1 className="text-9xl font-bold text-primary mb-4">404</h1>
-        <h2 className="text-3xl font-bold text-text dark:text-white mb-4">
-          Page Not Found
+        <span className="editorial-pill font-mono mb-6 inline-block">
+          Error 404 · Unmapped Route
+        </span>
+
+        <h1 className="text-7xl sm:text-8xl font-serif font-medium text-slate-900 dark:text-white mb-4 tracking-tight">
+          404
+        </h1>
+
+        <h2 className="text-xl sm:text-2xl font-serif font-medium text-slate-800 dark:text-slate-200 mb-3">
+          Document or route not found
         </h2>
-        <p className="text-muted-text dark:text-gray-400 mb-8">
-          The page you're looking for doesn't exist or has been moved.
+
+        <p className="text-sm text-slate-600 dark:text-slate-400 mb-8 font-sans leading-relaxed">
+          The requested system pathway does not exist, or has been consolidated under our research and software development services.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-primary to-deep-blue text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl hover:shadow-primary/40 transition-all"
-          >
-            <Home className="h-5 w-5" />
-            <span>Go Home</span>
+
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link to="/" className="btn-primary" id="notfound-home-btn">
+            <Home className="h-4 w-4" />
+            <span>Return to Studio Overview</span>
           </Link>
           <button
             onClick={() => window.history.back()}
-            className="inline-flex items-center justify-center space-x-2 bg-white dark:bg-navy border border-gray-300 dark:border-gray-700 text-text dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+            className="btn-secondary"
+            id="notfound-back-btn"
           >
-            <ArrowLeft className="h-5 w-5" />
+            <ArrowLeft className="h-4 w-4" />
             <span>Go Back</span>
           </button>
         </div>
-      </motion.div>
+      </div>
     </div>
   )
 }
