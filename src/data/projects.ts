@@ -17,134 +17,97 @@ export interface ProjectCaseStudy {
 export const projects: ProjectCaseStudy[] = [
   {
     id: 1,
-    title: 'Hospitality Reservation & Resource Planning',
-    clientContext: 'Illustrative context: a small resort group managing bookings across several properties.',
-    category: 'Full-Stack Systems',
-    problem: 'Reservations arrive through phone, email, and third-party booking channels. Staff reconcile room availability by hand, so a late update can leave two guests assigned to the same room.',
-    researchFindings: 'Discovery would trace how reservations move between reception, housekeeping, and management, then compare that workflow with the available booking data and channel rules.',
+    title: 'Nilaveli Happy Cabs',
+    clientContext: 'Travel, private rides, and island tours in Nilaveli, Sri Lanka.',
+    category: 'Travel Website',
+    problem: 'Travelers need a clear way to explore local transport and tour services and contact the team to arrange a ride.',
+    researchFindings: 'The live website brings together private rides, island-wide tours, fleet information, service coverage, and direct contact options.',
     requirements: [
-      'A shared availability record with clear conflict handling',
-      'A front-desk view for reservations, room assignment, and billing',
-      'Guest itinerary and confirmation generation',
-      'A low-connectivity workflow for essential front-desk tasks'
+      'Present local rides and island tours clearly',
+      'Make phone and WhatsApp contact easy to find',
+      'Show fleet and service coverage information',
+      'Keep the experience readable on mobile devices'
     ],
     deliverables: [
-      'Needs analysis and booking workflow report',
-      'Interactive desktop and mobile prototype',
-      'Reservation and housekeeping system specification',
-      'Staff guide and administrator runbook'
+      'Travel and transport website',
+      'Ride and tour service presentation',
+      'Fleet and coverage information',
+      'Direct contact links'
     ],
-    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
-    outcome: 'The proposed system would give staff one place to review availability and booking changes. A pilot would measure reservation conflicts and check-in time against an agreed baseline.'
+    technologies: ['Travel', 'Tours', 'Sri Lanka'],
+    outcome: 'The live site gives visitors a direct path to review local ride and tour services and contact Nilaveli Happy Cabs.',
+    link: 'https://nilavelihappycabs.com',
+    image: '/projects/nilaveli-happy-cabs.png'
   },
   {
     id: 2,
-    title: 'Distributed Inventory & Point of Sale',
-    clientContext: 'Illustrative context: a regional retailer operating stores and a central warehouse.',
-    category: 'Operational Systems',
-    problem: 'Branch teams maintain stock records in separate spreadsheets. Reconciliation takes time, and managers cannot easily tell whether a mismatch came from a sale, transfer, or delayed update.',
-    researchFindings: 'Needs analysis would follow a stock item through receiving, sale, return, and transfer, including the devices and network conditions used at each branch.',
+    title: 'Zenvesture Clothings',
+    clientContext: 'Online fashion storefront featuring abayas and clothing collections.',
+    category: 'E-commerce',
+    problem: 'Customers need a polished online storefront where they can discover clothing collections and explore products.',
+    researchFindings: 'The live storefront highlights collections and abayas through a fashion-led shopping experience.',
     requirements: [
-      'A shared item catalogue and branch-level stock ledger',
-      'Fast barcode lookup and receipt printing',
-      'Reorder suggestions with manager review',
-      'A reconciliation view that explains each stock movement'
+      'Create a clear, fashion-focused storefront',
+      'Make collections and abayas easy to discover',
+      'Present product imagery prominently',
+      'Support browsing across desktop and mobile'
     ],
     deliverables: [
-      'Branch workflow and needs analysis report',
-      'Hardware and connectivity feasibility review',
-      'Data model and system architecture specification',
-      'Prototype and rollout training materials'
+      'Clothing storefront',
+      'Collection and product presentation',
+      'Responsive shopping experience',
+      'Brand-led visual design'
     ],
-    technologies: ['React', 'Electron', 'Node.js', 'PostgreSQL'],
-    outcome: 'The design would make stock changes traceable across branches. Reconciliation time and stock accuracy could then be measured during a staged rollout.'
+    technologies: ['Fashion', 'Online Store', 'Clothing'],
+    outcome: 'The live website presents Zenvesture collections in a dedicated online storefront.',
+    link: 'https://zenvesture.com',
+    image: '/projects/zenvesture-clothings.png'
   },
   {
     id: 3,
-    title: 'Clinical Laboratory Results Workflow',
-    clientContext: 'Illustrative context: a diagnostic laboratory coordinating analyzer output and clinician review.',
-    category: 'Research & Data Systems',
-    problem: 'Staff copy analyzer results into report templates and notify clinicians through separate channels. The handoffs make it difficult to see which results are ready for review.',
-    researchFindings: 'Discovery would map the result lifecycle with laboratory staff, document analyzer data formats, and identify the review and retention rules the system must follow.',
+    title: 'Dreamwoods Studio',
+    clientContext: 'Creative production studio based in Dubai, UAE.',
+    category: 'Creative Studio',
+    problem: 'Brands looking for creative production need a clear view of a studio’s work, services, and approach before making an inquiry.',
+    researchFindings: 'The studio website introduces Dreamwoods, its creative production services, and its team through a cinematic, portfolio-led experience.',
     requirements: [
-      'A documented import format for supported analyzer data',
-      'A review queue with named approval steps',
-      'A clinician-facing results view with role-based access',
-      'An audit record for edits and release decisions'
+      'Introduce the studio and its creative work',
+      'Present production services clearly',
+      'Use a visual identity suited to a creative studio',
+      'Provide a clear path for prospective clients to make contact'
     ],
     deliverables: [
-      'Clinical workflow and stakeholder needs report',
-      'Analyzer integration feasibility assessment',
-      'Requirements specification and data flow diagrams',
-      'Prototype, operator guide, and training plan'
+      'Creative studio website',
+      'Studio and service presentation',
+      'Portfolio-led visual experience',
+      'Client inquiry entry point'
     ],
-    technologies: ['React', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL'],
-    outcome: 'A single review queue could reduce repeated data entry and clarify ownership at each handoff. Validation would compare processing time and correction rates with the laboratory’s baseline.'
+    technologies: ['Creative Studio', 'Video Production', '3D Animation'],
+    outcome: 'The live website presents Dreamwoods as a Dubai-based creative studio and gives prospective clients a way to explore its work and services.',
+    link: 'https://dreamwoods.ae/',
+    image: '/projects/dreamwoods-studio.svg'
   },
   {
     id: 4,
-    title: 'Learning & Assessment Platform',
-    clientContext: 'Illustrative context: a training institution with modular coursework and students using varied devices.',
-    category: 'Web Platforms',
-    problem: 'The institution needs practical coursework, flexible assessment rubrics, and access for students whose connection or device may be limited.',
-    researchFindings: 'Research would examine course preparation, instructor marking, student device use, and the materials learners need when they are offline.',
+    title: 'SMART POS System',
+    clientContext: 'Point-of-sale system for day-to-day business sales operations.',
+    category: 'Business Systems',
+    problem: 'Businesses need a straightforward way to handle sales through a point-of-sale system.',
+    researchFindings: 'The project focuses on a clear point-of-sale interface designed around common in-store sales tasks.',
     requirements: [
-      'Course modules with downloadable learning materials',
-      'Configurable assessment rubrics and instructor feedback',
-      'A responsive student view for low-bandwidth connections',
-      'A record of grades, completion, and issued certificates'
+      'Keep the checkout flow clear and easy to follow',
+      'Present sales items and order totals in one view',
+      'Provide a focused interface for point-of-sale tasks',
+      'Design the system to work across common screen sizes'
     ],
     deliverables: [
-      'Student and instructor needs analysis',
-      'Course and assessment workflow prototype',
-      'Platform requirements and architecture plan',
-      'Faculty guide and student onboarding materials'
+      'SMART POS system',
+      'Point-of-sale interface',
+      'Sales workflow design',
+      'Responsive system preview'
     ],
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Progressive Web App'],
-    outcome: 'The platform could bring coursework and feedback into one place while keeping essential materials available offline. A pilot would assess access, completion, and instructor workload.'
-  },
-  {
-    id: 5,
-    title: 'Produce Planning & Shipment Analysis',
-    clientContext: 'Illustrative context: an agricultural cooperative coordinating collection, storage, and export.',
-    category: 'Data & Analytics',
-    problem: 'Harvest estimates, storage availability, and freight dates sit in separate records. Planners have little time to compare a changing harvest plan with shipment capacity.',
-    researchFindings: 'A feasibility study would assess the quality and history of harvest, storage, and shipping data before deciding which forecasts can be supported.',
-    requirements: [
-      'A shared view of expected harvest and storage capacity',
-      'Planning scenarios based on documented assumptions',
-      'A shipment timeline linked to produce batches',
-      'A mobile workflow for field collection updates'
-    ],
-    deliverables: [
-      'Data quality and feasibility report',
-      'Forecasting assumptions and model specification',
-      'Planning dashboard prototype and API contract',
-      'Field and logistics team user guide'
-    ],
-    technologies: ['Python', 'Pandas', 'React', 'FastAPI', 'PostgreSQL'],
-    outcome: 'A shared planning view could help teams compare supply with storage and shipment capacity. Forecast accuracy would be reported against agreed historical data.'
-  },
-  {
-    id: 6,
-    title: 'Municipal Service Request Portal',
-    clientContext: 'Illustrative context: a local administration receiving service requests across several departments.',
-    category: 'Public Sector Platforms',
-    problem: 'Residents submit requests in person and have limited visibility after handoff. Staff need a consistent way to route each request and report its status.',
-    researchFindings: 'Stakeholder research would document resident access needs, department responsibilities, language requirements, and the existing steps from submission to resolution.',
-    requirements: [
-      'A mobile-friendly form with language support',
-      'Department routing based on request type and service area',
-      'Status updates residents can check without returning in person',
-      'A staff dashboard for workload and request history'
-    ],
-    deliverables: [
-      'Resident and staff needs assessment',
-      'Service routing and status workflow diagram',
-      'Portal prototype and requirements specification',
-      'Department operations guide and handoff session'
-    ],
-    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
-    outcome: 'The portal could make request ownership and status visible to residents and staff. A phased launch would track response time, routing accuracy, and accessibility feedback.'
+    technologies: ['Point of Sale', 'Retail', 'Business Software'],
+    outcome: 'SMART POS is presented as a focused system concept for everyday point-of-sale operations.',
+    image: '/projects/smart-pos.svg'
   }
 ]

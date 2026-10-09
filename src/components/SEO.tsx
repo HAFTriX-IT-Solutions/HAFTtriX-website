@@ -28,8 +28,8 @@ export default function SEO() {
   const project = projectId ? projects.find((item) => item.id === Number(projectId)) : undefined
   const page = project
     ? {
-        title: `${project.title} | Illustrative Project Brief | HAFTriX IT Solutions`,
-        description: `${project.title}: an illustrative brief from HAFTriX IT Solutions showing problem framing, needs analysis, requirements, and a proposed delivery approach.`,
+        title: `${project.title} | HAFTriX IT Solutions`,
+        description: `${project.title}: ${project.clientContext}`,
       }
     : seoPages[routePath as keyof typeof seoPages] ?? fallbackPage
 

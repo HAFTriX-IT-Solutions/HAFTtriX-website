@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Reveal animations
+   Fixed timings from the design spec:
+     heading  base 480ms  stagger 85ms  dur 720ms  from y+26px
+     subline  base 1150ms stagger 22ms  dur 600ms  from y+14px
+     blocks   dur 700ms   cubic-bezier(0.2, 0, 0, 1)
+   ========================================================================== */
+
+.reveal-block {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity 700ms var(--ease-entrance), transform 700ms var(--ease-entrance);
+  will-change: opacity, transform;
+}
+
+.reveal-block.is-in {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+.reveal-block--nav {
+  transform: translateY(-0.75rem);
+}
+
+.reveal-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 720ms cubic-bezier(0.2, 0, 0, 1), transform 720ms cubic-bezier(0.2, 0, 0, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-word.is-in {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+.reveal-word--sub {
+  transform: translateY(14px);
+  transition-duration: 600ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-block,
+  .reveal-word {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+}

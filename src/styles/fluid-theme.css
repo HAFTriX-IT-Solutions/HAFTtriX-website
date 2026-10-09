@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Fluid design layer
+   --------------------------------------------------------------------------
+   Additive only. This file introduces the fluid background surface plus the
+   shared primitives (glass pill, action pill, page scrim, content panel) that
+   the spec defines. Nothing here removes or renames anything in index.css —
+   the existing glass tokens, theme variables and component classes are left
+   untouched and continue to win for their own custom properties.
+
+   Two names collide with the existing design system, so they are namespaced:
+     spec `--glass-fill`    -> `--fluid-glass-fill`
+     spec `--duration-fast` -> `--fluid-duration-fast`
+   ========================================================================== */
+
+:root {
+  /* Surfaces & text */
+  --hero-base: #04050c;
+  --heading: #eef0f6;
+  --body-muted: #b9becf;
+  --on-media: #ffffff;
+  --action-inverse: #ffffff;
+  --action-inverse-fg: #2f2f33;
+
+  /* Glass */
+  --fluid-glass-fill: rgba(255, 255, 255, 0.08);
+  --glass-fill-strong: rgba(10, 12, 22, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.16);
+
+  /* Scrim (darkens the fluid behind text) */
+  --scrim: rgba(4, 5, 12, 0.46);
+  --scrim-strong: rgba(4, 5, 12, 0.66);
+  --scrim-soft: rgba(4, 5, 12, 0.14);
+  --scrim-page: rgba(4, 5, 12, 0.55);
+
+  /* Motion */
+  --fluid-duration-fast: 150ms;
+  --ease-entrance: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Radii */
+  --radius-pill: 9999px;
+  --radius-card: 1rem;
+
+  /* The surface the fluid canvas paints onto. Theme-aware, because the canvas
+     itself is transparent and composites over this. */
+  --fluid-base: #04050c;
+  --fluid-canvas-opacity: 1;
+}
+
+html[data-theme='light'] {
+  --scrim: rgba(233, 238, 246, 0.62);
+  --scrim-strong: rgba(236, 240, 247, 0.8);
+  --scrim-soft: rgba(236, 240, 247, 0.2);
+  --scrim-page: rgba(236, 240, 247, 0.6);
+  --glass-fill-strong: rgba(248, 250, 253, 0.82);
+  --glass-border: rgba(24, 37, 58, 0.12);
+  --fluid-base: #e6ebf3;
+  --fluid-canvas-opacity: 0.62;
+}
+
+/* --------------------------------------------------------------------------
+   Persistent fluid canvas
+   -------------------------------------------------------------------------- */
+
+.fluid-bg {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  background-color: var(--fluid-base);
+  background-image: var(--ambient-mesh);
+  contain: layout paint;
+  pointer-events: none;
+}
+
+.fluid-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: var(--fluid-canvas-opacity);
+  transition: opacity var(--duration-theme, 460ms) var(--ease-natural, ease);
+}
+
+/* Keeps the routed content legible without ever sitting on top of it. */
+.fluid-scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    115% 95% at 50% 46%,
+    var(--scrim-strong) 0%,
+    var(--scrim-strong) 24%,
+    var(--scrim) 52%,
+    var(--scrim-soft) 100%
+  );
+}
+
+/* Gentle corner vignette that pushes attention to the centre. */
+.fluid-grain {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    130% 110% at 50% 50%,
+    transparent 42%,
+    color-mix(in srgb, var(--fluid-base) 72%, transparent) 100%
+  );
+}
+
+/* Lenis smooth scroll — required base styles. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Typography — Onest for body/UI, editorial serif headings kept intact
+   -------------------------------------------------------------------------- */
+
+body,
+.btn-pill,
+.glass-pill {
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+button,
+.btn-pill,
+.btn-primary,
+.btn-secondary,
+.glass-pill,
+.badge {
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Primitives
+   -------------------------------------------------------------------------- */
+
+/* Glass pill / panel — nav links, badges, form bars, inline chips. */
+.glass-pill {
+  background: var(--fluid-glass-fill);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* Solid light action pill — the primary CTA shape from the spec. */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0 1.125rem;
+  background: var(--action-inverse);
+  color: var(--action-inverse-fg);
+  font-size: 0.85rem;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: background var(--fluid-duration-fast) var(--ease-entrance);
+}
+
+@media (min-width: 640px) {
+  .btn-pill {
+    height: 2.75rem;
+    padding: 0 1.375rem;
+    font-size: 0.95rem;
+  }
+}
+
+.btn-pill:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.btn-pill:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Radial scrim for marketing/hero sections over the fluid. */
+.page-scrim {
+  position: relative;
+}
+
+.page-scrim::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(
+    115% 95% at 50% 46%,
+    var(--scrim-strong) 0%,
+    var(--scrim-strong) 24%,
+    var(--scrim) 52%,
+    var(--scrim-soft) 100%
+  );
+  content: '';
+  pointer-events: none;
+}
+
+/* Dense content (tables, dashboards, long-form) gets an opaque-ish panel so
+   the fluid can never reduce legibility. */
+.content-panel {
+  position: relative;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  background: var(--glass-fill-strong);
+  color: var(--heading);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fluid-canvas {
+    transition: none;
+  }
+}

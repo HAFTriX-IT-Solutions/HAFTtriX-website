@@ -18,7 +18,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({
   id,
-  title = 'Project Brief',
+  title = 'Project',
   clientContext,
   problem,
   outcome,
@@ -49,9 +49,26 @@ export default function ProjectCard({
             {displayCategory}
           </span>
           <span className="font-mono text-xs text-slate-400">
-              Brief 0{id}
+              Project 0{id}
           </span>
         </div>
+
+        {project?.image && (
+          <a
+            href={project.link || `/projects/${id}`}
+            target={project.link ? '_blank' : undefined}
+            rel={project.link ? 'noopener noreferrer' : undefined}
+            aria-label={project.link ? `Visit ${displayTitle} website` : `View ${displayTitle} project`}
+            className="block mb-5 overflow-hidden rounded-xl border border-slate-200/60 dark:border-white/10"
+          >
+            <img
+              src={project.image}
+              alt={`${displayTitle} project preview`}
+              className="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              loading="lazy"
+            />
+          </a>
+        )}
 
         {/* Title */}
         <h3 className="text-xl md:text-2xl font-serif font-medium text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -128,9 +145,20 @@ export default function ProjectCard({
           to={`/projects/${id}`}
           className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
         >
-          <span>Review Project Brief</span>
+          <span>View Project</span>
           <ArrowUpRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </Link>
+        {project?.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-blue-700 dark:text-blue-300 hover:text-blue-500 transition-colors"
+          >
+            <span>Visit Website</span>
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+        )}
       </div>
     </div>
   )

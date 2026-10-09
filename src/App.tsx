@@ -3,11 +3,12 @@ import { Suspense, lazy, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
-import AmbientField from './components/AmbientField'
 import RevealSystem from './components/RevealSystem'
 import ScrollProgress from './components/ScrollProgress'
 import LoadingScreen from './components/LoadingScreen'
 import SEO from './components/SEO'
+import FluidBackground from './fluid/FluidBackground'
+import { SmoothScrollProvider, useLenis } from './fluid/SmoothScrollProvider'
 import { ThemeProvider } from './context/ThemeContext'
 
 const Home = lazy(() => import('./pages/Home'))
@@ -23,10 +24,12 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 function RouteScrollReset() {
   const { pathname } = useLocation()
+  const lenis = useLenis()
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if (lenis) lenis.scrollTo(0, { immediate: true })
+    else window.scrollTo(0, 0)
+  }, [pathname, lenis])
 
   return null
 }
@@ -34,21 +37,25 @@ function RouteScrollReset() {
 function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <div className="app-shell">
-          <AmbientField />
-          <RevealSystem />
-          <ScrollProgress />
-          <RouteScrollReset />
-          <SEO />
-          <Navbar />
-          <Suspense fallback={<LoadingScreen />}>
-            <RoutePages />
-          </Suspense>
-          <Footer />
-          <ScrollToTop />
-        </div>
-      </Router>
+      {/* Mounted once, above the router: the fluid canvas and the scroll
+          behaviour must survive navigation instead of remounting per page. */}
+      <SmoothScrollProvider>
+        <Router>
+          <div className="app-shell">
+            <FluidBackground />
+            <RevealSystem />
+            <ScrollProgress />
+            <RouteScrollReset />
+            <SEO />
+            <Navbar />
+            <Suspense fallback={<LoadingScreen />}>
+              <RoutePages />
+            </Suspense>
+            <Footer />
+            <ScrollToTop />
+          </div>
+        </Router>
+      </SmoothScrollProvider>
     </ThemeProvider>
   )
 }

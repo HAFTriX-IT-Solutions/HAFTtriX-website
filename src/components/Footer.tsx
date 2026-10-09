@@ -7,7 +7,7 @@ const quickLinks = [
   { name: 'R&D Process', path: '/#lifecycle' },
   { name: 'Services', path: '/services' },
   { name: 'Industry Solutions', path: '/solutions' },
-  { name: 'Project Examples', path: '/projects' },
+  { name: 'Projects', path: '/projects' },
   { name: 'About the Studio', path: '/about' },
   { name: 'Consultation', path: '/contact' },
 ]
@@ -31,7 +31,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3 group w-fit">
               <div className="w-10 h-10 rounded-xl overflow-hidden p-1.5 flex items-center justify-center liquid-glass">
                 <img
-                  src="/logo.png"
+                  src="/logo.jpg"
                   alt="HAFTriX IT Solutions"
                   className="w-full h-full object-contain"
                 />

@@ -4,7 +4,7 @@
 
 :root {
   --font-serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', 'Avenir Next', Arial, sans-serif;
+  --font-sans: 'Onest', 'Plus Jakarta Sans', 'Avenir Next', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
   --ease-natural: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-fast: 220ms;
@@ -44,10 +44,6 @@ html[data-theme='dark'] {
     radial-gradient(ellipse at 82% 26%, rgba(22, 115, 122, 0.16), transparent 25%),
     radial-gradient(ellipse at 73% 81%, rgba(133, 93, 44, 0.13), transparent 30%),
     radial-gradient(ellipse at 27% 72%, rgba(47, 75, 127, 0.16), transparent 29%);
-  --ambient-bubble-fill: rgba(119, 160, 211, 0.1);
-  --ambient-bubble-edge: rgba(166, 205, 244, 0.29);
-  --ambient-bubble-glow: rgba(67, 126, 189, 0.12);
-  --ambient-bubble-text: rgba(198, 218, 243, 0.13);
   --page-wipe: rgba(151, 186, 227, 0.14);
 }
 
@@ -82,10 +78,6 @@ html[data-theme='light'] {
     radial-gradient(ellipse at 83% 22%, rgba(48, 151, 147, 0.23), transparent 27%),
     radial-gradient(ellipse at 77% 83%, rgba(214, 161, 94, 0.24), transparent 30%),
     radial-gradient(ellipse at 25% 74%, rgba(104, 137, 183, 0.2), transparent 29%);
-  --ambient-bubble-fill: rgba(57, 119, 183, 0.11);
-  --ambient-bubble-edge: rgba(48, 91, 143, 0.31);
-  --ambient-bubble-glow: rgba(70, 143, 192, 0.16);
-  --ambient-bubble-text: rgba(28, 56, 91, 0.18);
   --page-wipe: rgba(255, 255, 255, 0.55);
 }
 
@@ -337,78 +329,6 @@ html[data-theme='light'] {
 
 }
 
-.ambient-field {
-  position: fixed;
-  z-index: 0;
-  inset: 0;
-  overflow: hidden;
-  contain: strict;
-  pointer-events: none;
-}
-
-.ambient-icon-sprite {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
-.ambient-icon-sprite symbol,
-.ambient-icon-sprite path,
-.ambient-icon-sprite rect,
-.ambient-icon-sprite ellipse,
-.ambient-icon-sprite circle { vector-effect: non-scaling-stroke; }
-
-.ambient-bubble {
-  position: absolute;
-  display: grid;
-  width: var(--bubble-size);
-  height: var(--bubble-size);
-  align-content: center;
-  justify-items: center;
-  gap: 0.35rem;
-  overflow: hidden;
-  border: 1px solid var(--ambient-bubble-edge);
-  border-radius: 36% 64% 57% 43% / 47% 39% 61% 53%;
-  background: radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.3), transparent 56%), var(--ambient-bubble-fill);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -10px 24px var(--ambient-bubble-glow);
-  color: var(--ambient-bubble-text);
-  opacity: 0.48;
-  animation: bubble-drift var(--bubble-duration) ease-in-out var(--bubble-delay) infinite alternate;
-  contain: strict;
-  will-change: transform, opacity;
-}
-
-.ambient-bubble:nth-of-type(3n) { border-radius: 50%; }
-.ambient-bubble:nth-of-type(4n) { border-radius: 44% 56% 40% 60% / 60% 46% 54% 40%; }
-
-.ambient-bubble-icon {
-  width: 31%;
-  height: 31%;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.1;
-}
-
-.ambient-bubble-label {
-  max-width: 88%;
-  overflow: hidden;
-  color: inherit;
-  font-family: var(--font-mono);
-  font-size: clamp(0.4rem, 0.58vw, 0.58rem);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.ambient-field.is-paused .ambient-bubble { animation-play-state: paused; }
-
-@keyframes bubble-drift {
-  from { opacity: 0.55; transform: translate3d(var(--parallax-x, 0), var(--parallax-y, 0), 0) rotate(-4deg); }
-  to { opacity: 0.78; transform: translate3d(calc(var(--parallax-x, 0px) + 12px), calc(var(--parallax-y, 0px) - 19px), 0) rotate(5deg); }
-}
-
 .scroll-progress {
   position: fixed;
   z-index: 100;
@@ -615,12 +535,6 @@ textarea:focus {
   @keyframes vt-fade-in { from { opacity: 0; transform: translateY(8px); } }
 }
 
-@media (max-width: 700px) {
-  .ambient-bubble:nth-of-type(n + 9) { display: none; }
-  .ambient-bubble { width: min(var(--bubble-size), 12vw); height: min(var(--bubble-size), 12vw); opacity: 0.32; }
-}
-
-.low-performance .ambient-bubble:nth-of-type(n + 7) { display: none; }
 .low-performance .refractive-glass { filter: none; }
 
 .stats-grid {
@@ -688,8 +602,6 @@ textarea:focus {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .ambient-bubble { animation: none; will-change: auto; }
-  .ambient-field { display: block; }
   .route-page,
   .route-page::after { animation: none; }
   [data-animate] {

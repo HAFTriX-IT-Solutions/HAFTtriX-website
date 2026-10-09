@@ -9,7 +9,7 @@ const navItems = [
   { name: 'R&D Process', path: '/#lifecycle' },
   { name: 'Services', path: '/services' },
   { name: 'Solutions', path: '/solutions' },
-  { name: 'Project Examples', path: '/projects' },
+  { name: 'Projects', path: '/projects' },
   { name: 'About', path: '/about' },
 ]
 
@@ -46,7 +46,7 @@ export default function Navbar() {
           <nav aria-label="Primary navigation" className="site-nav liquid-glass glass-specular flex items-center justify-between rounded-2xl px-4 sm:px-5 py-3">
             <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 rounded-lg focus-visible:ring-2" aria-label="HAFTriX IT Solutions home">
               <span className="brand-mark relative w-9 h-9 rounded-xl overflow-hidden p-1 flex items-center justify-center bg-white/70 dark:bg-slate-800/80 border border-slate-200/50 dark:border-white/10 shadow-sm transition-transform duration-300 group-hover:scale-105 shrink-0">
-                <img src="/logo.png" alt="HAFTriX IT Solutions" className="w-full h-full object-contain" />
+                <img src="/logo.jpg" alt="HAFTriX IT Solutions" className="w-full h-full object-contain" />
               </span>
               <span className="flex flex-col min-w-0">
                 <span className="text-sm sm:text-base font-semibold tracking-tight text-slate-900 dark:text-white leading-tight whitespace-nowrap">HAFTriX IT Solutions</span>
@@ -106,7 +106,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between pb-5 border-b border-slate-200/60 dark:border-white/10">
           <div className="flex items-center gap-2.5">
             <span className="w-9 h-9 rounded-lg overflow-hidden bg-white/75 p-1 flex items-center justify-center">
-              <img src="/logo.png" alt="HAFTriX IT Solutions" className="w-full h-full object-contain" />
+              <img src="/logo.jpg" alt="HAFTriX IT Solutions" className="w-full h-full object-contain" />
             </span>
             <span className="text-sm font-semibold text-slate-900 dark:text-white">HAFTriX IT Solutions</span>
           </div>

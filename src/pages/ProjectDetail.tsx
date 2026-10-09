@@ -16,14 +16,14 @@ export default function ProjectDetail() {
       <div className="min-h-[70vh] flex flex-col items-center justify-center pt-32 px-4 text-center">
         <span className="editorial-pill font-mono mb-4">404 Error</span>
         <h1 className="text-4xl font-serif font-medium text-slate-900 dark:text-white mb-4">
-          Project Brief Not Found
+          Project Not Found
         </h1>
         <p className="text-slate-600 dark:text-slate-400 mb-8 max-w-md">
           This project brief is not available.
         </p>
         <Link to="/projects" className="btn-primary">
           <ArrowLeft className="h-4 w-4" />
-          <span>Back to Project Examples</span>
+          <span>Back to Projects</span>
         </Link>
       </div>
     )
@@ -39,7 +39,7 @@ export default function ProjectDetail() {
             className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 hover:text-slate-900 dark:hover:text-white mb-8 transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
-            <span>Back to Project Examples</span>
+            <span>Back to Projects</span>
           </Link>
 
           <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -47,7 +47,7 @@ export default function ProjectDetail() {
               {project.category}
             </span>
             <span className="text-xs font-mono text-slate-400">
-              Illustrative Brief 0{project.id}
+              Project 0{project.id}
             </span>
           </div>
 
@@ -58,6 +58,24 @@ export default function ProjectDetail() {
           <p className="text-sm font-mono text-slate-500 dark:text-slate-400">
             {project.clientContext}
           </p>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary mt-6 inline-flex items-center gap-2 text-xs"
+            >
+              <span>Visit Website</span>
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          )}
+          {project.image && (
+            <img
+              src={project.image}
+              alt={`${project.title} project preview`}
+              className="mt-8 w-full aspect-[16/8] rounded-2xl object-cover border border-slate-200/60 dark:border-white/10"
+            />
+          )}
         </div>
       </section>
 
@@ -137,7 +155,7 @@ export default function ProjectDetail() {
               <div className="liquid-glass glass-specular rounded-2xl p-6 space-y-3">
                 <div className="flex items-center gap-2 text-slate-900 dark:text-white text-sm font-semibold">
                   <FileCheck className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                <span>Sample Deliverables</span>
+                <span>Project Deliverables</span>
                 </div>
                 <div className="space-y-2 pt-2">
                   {project.deliverables.map((deliv) => (
@@ -203,7 +221,7 @@ export default function ProjectDetail() {
               >
                 <ArrowLeft className="h-4 w-4 text-slate-400 group-hover:-translate-x-1 transition-transform" />
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Previous Brief</span>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Previous Project</span>
                   <span className="text-sm font-medium text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {prevProject.title}
                   </span>
@@ -217,7 +235,7 @@ export default function ProjectDetail() {
                 className="group flex items-center gap-3 text-right"
               >
                 <div>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Next Brief</span>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Next Project</span>
                   <span className="text-sm font-medium text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {nextProject.title}
                   </span>

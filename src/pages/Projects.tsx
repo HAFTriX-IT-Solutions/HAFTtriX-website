@@ -5,12 +5,10 @@ import { projects } from '../data/projects'
 
 const categories = [
   'All',
-  'Full-Stack Systems',
-  'Operational Systems',
-  'Research & Data Systems',
-  'Web Platforms',
-  'Data & Analytics',
-  'Public Sector Platforms'
+  'Travel Website',
+  'E-commerce',
+  'Creative Studio',
+  'Business Systems'
 ]
 
 export default function Projects() {
@@ -27,13 +25,13 @@ export default function Projects() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <span className="editorial-pill font-mono mb-4 inline-block">
-              [ Illustrative Project Briefs ]
+              [ Selected Projects ]
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-medium text-slate-900 dark:text-white mb-6 leading-tight">
-              Project Examples: From Needs to Delivery
+              Selected Work: Websites &amp; Systems
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400 font-sans leading-relaxed">
-              These example briefs show how a research-led engagement can move from a problem statement to requirements, design, and a measurable delivery plan. They are illustrative scenarios, not named client engagements.
+              A selection of live websites and systems built for businesses and creative teams.
             </p>
           </div>
         </div>

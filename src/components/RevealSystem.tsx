@@ -47,6 +47,9 @@ export default function RevealSystem() {
       if (node.matches(revealSelector)) candidates.push(node)
       candidates.push(...node.querySelectorAll(revealSelector))
       candidates.forEach((element, index) => {
+        // Heroes that own the fluid entrance choreography opt out of the
+        // generic scroll reveal so the two systems never fight.
+        if (element.closest('[data-reveal-scope]')) return
         if (!element.hasAttribute('data-animate')) {
           element.setAttribute('data-animate', element instanceof HTMLImageElement ? 'image' : 'fade-up')
           const htmlElement = element as HTMLElement

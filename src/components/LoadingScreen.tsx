@@ -3,7 +3,7 @@ export default function LoadingScreen() {
     <div className="loading-screen fixed inset-0 flex items-center justify-center z-[100] overflow-hidden">
       <div className="relative text-center px-6" data-animate="scale">
         <div className="relative w-16 h-16 mx-auto mb-6 liquid-glass rounded-2xl p-3 flex items-center justify-center">
-          <img src="/logo.png" alt="HAFTriX IT Solutions" className="h-full w-full object-contain" />
+          <img src="/logo.jpg" alt="HAFTriX IT Solutions" className="h-full w-full object-contain" />
         </div>
         <div className="mb-6">
           <div className="text-xl font-serif font-medium text-slate-900 dark:text-white">HAFTriX IT Solutions</div>
