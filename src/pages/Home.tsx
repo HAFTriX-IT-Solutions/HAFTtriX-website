@@ -114,81 +114,73 @@ export default function Home() {
 
             {/* Right 5 Columns: Liquid Glass Lifecycle Inspector */}
             <div className="lg:col-span-5" data-reveal-block data-delay="600">
-              <div className="liquid-glass glass-specular refractive-glass rounded-3xl p-6 sm:p-8 relative overflow-hidden">
-                <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200/60 dark:border-white/10">
-                  <span className="text-[11px] font-mono text-slate-500 uppercase tracking-widest">From needs to delivery</span>
-                  <span className="text-[10px] font-mono text-slate-400">01 — 08</span>
-                </div>
+              <div className="liquid-glass glass-specular refractive-glass rounded-[28px] p-6 sm:p-8 relative overflow-hidden isolate">
+                <div className="absolute inset-x-8 top-0 h-28 bg-gradient-to-b from-blue-400/15 via-transparent to-transparent blur-2xl" />
 
-                <div className="space-y-4">
-                  {/* Stage 1 Preview */}
-                  <div className="p-3.5 rounded-xl bg-white/60 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Compass className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-semibold text-slate-900 dark:text-white">
-                          01 · Needs analysis
-                        </span>
-                        <span className="text-[10px] font-mono text-blue-700 dark:text-blue-300">
-                          Listen
-                        </span>
+                <div className="relative">
+                  <div className="flex items-center justify-between pb-4 mb-5 border-b border-slate-200/60 dark:border-white/10">
+                    <span className="text-[11px] font-mono text-slate-500 uppercase tracking-widest">From needs to delivery</span>
+                    <span className="text-[10px] font-mono text-slate-400">01 — 08</span>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="p-3.5 rounded-xl bg-white/65 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 flex items-start gap-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Compass className="h-4 w-4" />
                       </div>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                        Map the current workflow and speak with the people who use it.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Stage 2 Preview */}
-                  <div className="p-3.5 rounded-xl bg-white/60 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-700 dark:text-blue-300 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <FileCheck2 className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-semibold text-slate-900 dark:text-white">
-                          02 · Requirements &amp; design
-                        </span>
-                        <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400">
-                          Define
-                        </span>
+                      <div>
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-xs font-mono font-semibold text-slate-900 dark:text-white">01 · Needs analysis</span>
+                          <span className="text-[10px] font-mono text-blue-700 dark:text-blue-300">Listen</span>
+                        </div>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Map the workflow, stakeholders, and pain points before making a decision.</p>
                       </div>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                        Agree what the system must do, then test the flow in a prototype.
-                      </p>
                     </div>
-                  </div>
 
-                  {/* Stage 3 Preview */}
-                  <div className="p-3.5 rounded-xl bg-white/60 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 flex items-start gap-3.5">
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-700 dark:text-blue-300 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Code2 className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-semibold text-slate-900 dark:text-white">
-                          03 · Build &amp; handover
-                        </span>
-                        <span className="text-[10px] font-mono text-slate-400">
-                          Deliver
-                        </span>
+                    <div className="p-3.5 rounded-xl bg-white/65 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 flex items-start gap-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500/15 to-violet-500/10 text-indigo-700 dark:text-indigo-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <FileCheck2 className="h-4 w-4" />
                       </div>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                        Develop, validate, document, and prepare the team to use it.
-                      </p>
+                      <div>
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-xs font-mono font-semibold text-slate-900 dark:text-white">02 · Requirements &amp; design</span>
+                          <span className="text-[10px] font-mono text-amber-600 dark:text-amber-400">Define</span>
+                        </div>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Turn the problem into an actionable blueprint and a clear user journey.</p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 rounded-xl bg-white/65 dark:bg-white/5 border border-slate-200/60 dark:border-white/10 flex items-start gap-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500/15 to-teal-500/10 text-emerald-700 dark:text-emerald-300 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Code2 className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-xs font-mono font-semibold text-slate-900 dark:text-white">03 · Build &amp; handover</span>
+                          <span className="text-[10px] font-mono text-slate-500 dark:text-slate-300">Deliver</span>
+                        </div>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Develop, verify, and document the solution so adoption is smooth.</p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="mt-5 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-400/5 border border-blue-500/15">
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1">
-                    At every stage
+                  <div className="mt-5 grid grid-cols-3 gap-2">
+                    {[
+                      ['Discovery', '01'],
+                      ['Design', '02'],
+                      ['Delivery', '03']
+                    ].map(([label, value]) => (
+                      <div key={label} className="rounded-xl border border-slate-200/60 dark:border-white/10 bg-white/40 dark:bg-white/5 px-3 py-2 text-center">
+                        <div className="text-[10px] font-mono uppercase tracking-[0.18em] text-slate-400">{value}</div>
+                        <div className="mt-1 text-sm font-semibold text-slate-800 dark:text-slate-100">{label}</div>
+                      </div>
+                    ))}
                   </div>
-                  <p className="text-xs text-slate-700 dark:text-slate-300 italic font-serif">
-                    The next decision follows from what the research and requirements show.
-                  </p>
+
+                  <div className="mt-5 p-4 rounded-xl bg-gradient-to-r from-blue-500/8 via-sky-500/6 to-transparent border border-blue-500/15">
+                    <div className="text-[11px] font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1">At every stage</div>
+                    <p className="text-xs text-slate-700 dark:text-slate-300 italic font-serif">The next decision follows from concrete research, not guesswork.</p>
+                  </div>
                 </div>
               </div>
             </div>

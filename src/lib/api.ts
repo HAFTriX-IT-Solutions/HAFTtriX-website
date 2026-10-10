@@ -1,5 +1,6 @@
 import { projects } from '../data/projects'
 import { services } from '../data/services'
+import { siteConfig } from '../data/siteConfig'
 
 export interface ContactFormPayload {
   fullName: string
@@ -27,6 +28,26 @@ export function sanitizeContactForm(formData: ContactFormPayload): ContactFormPa
   }
 }
 
+export function getWhatsAppLink(formData: ContactFormPayload) {
+  const safeData = sanitizeContactForm(formData)
+  const message = [
+    'Hello HAFTriX IT Solutions,',
+    '',
+    'New inquiry from the website:',
+    `Name: ${safeData.fullName}`,
+    `Email: ${safeData.email}`,
+    `Phone: ${safeData.phone || 'Not provided'}`,
+    `Service: ${safeData.service}`,
+    `Budget: ${safeData.budget || 'Not specified'}`,
+    '',
+    'Project details:',
+    safeData.message,
+  ].join('\n')
+
+  const encodedMessage = encodeURIComponent(message)
+  return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodedMessage}`
+}
+
 export async function submitContactForm(formData: ContactFormPayload) {
   const safeData = sanitizeContactForm(formData)
 
@@ -42,7 +63,7 @@ export async function submitContactForm(formData: ContactFormPayload) {
     throw new Error('Please provide a bit more detail about your project so we can help properly.')
   }
 
-  await new Promise((resolve) => setTimeout(resolve, 800))
+  await new Promise((resolve) => setTimeout(resolve, 500))
 
   return {
     success: true,

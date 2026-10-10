@@ -1,6 +1,6 @@
 import { FormEvent, ChangeEvent, useState } from 'react'
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
-import { submitContactForm } from '../lib/api'
+import { getWhatsAppLink, submitContactForm } from '../lib/api'
 
 interface FormData {
   fullName: string
@@ -49,6 +49,8 @@ export default function ContactForm() {
 
     try {
       await submitContactForm(formData)
+      const whatsappLink = getWhatsAppLink(formData)
+      window.open(whatsappLink, '_blank', 'noopener,noreferrer')
       setIsSubmitted(true)
       setTimeout(() => {
         setIsSubmitted(false)

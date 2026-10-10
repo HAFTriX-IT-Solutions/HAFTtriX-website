@@ -1,84 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
-  --font-sans: 'Onest', 'Plus Jakarta Sans', 'Avenir Next', Arial, sans-serif;
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Manrope', 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
   --ease-natural: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-fast: 220ms;
-  --duration-normal: 360ms;
-  --duration-theme: 460ms;
+  --duration-fast: 200ms;
+  --duration-normal: 320ms;
+  --duration-theme: 420ms;
   --space-section: clamp(4.5rem, 9vw, 7rem);
+  font-size: 16px;
 }
 
 html[data-theme='dark'] {
   color-scheme: dark;
-  --page-bg: #0b1220;
-  --page-text: #e7edf5;
-  --page-muted: #a4b0c0;
-  --page-subtle: #748197;
-  --accent: #7ca8ed;
-  --accent-strong: #a3c2f4;
-  --glass-fill: rgba(255, 255, 255, 0.095);
-  --glass-fill-hover: rgba(255, 255, 255, 0.13);
-  --glass-edge: rgba(255, 255, 255, 0.17);
-  --glass-edge-top: rgba(255, 255, 255, 0.46);
-  --glass-blur: 24px;
-  --glass-saturation: 178%;
-  --glass-contrast: 1.04;
-  --glass-highlight: rgba(255, 255, 255, 0.34);
-  --glass-inset-bottom: rgba(255, 255, 255, 0.035);
-  --glass-shadow: 0 22px 58px rgba(0, 0, 0, 0.39);
-  --glass-fallback: rgba(20, 30, 47, 0.94);
-  --glass-sheen: rgba(255, 255, 255, 0.17);
-  --nav-scrolled-fill: rgba(20, 31, 49, 0.66);
-  --nav-scrolled-blur: 28px;
-  --nav-scrolled-shadow: 0 18px 44px rgba(0, 0, 0, 0.36);
-  --button-fill: #f1f5fa;
-  --button-text: #101827;
-  --button-shadow: 0 10px 26px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --page-bg: #070d18;
+  --page-text: #edf4ff;
+  --page-muted: #b6c6dc;
+  --page-subtle: #7f8ea8;
+  --accent: #74a9ff;
+  --accent-strong: #aac9ff;
+  --glass-fill: rgba(17, 24, 39, 0.68);
+  --glass-fill-hover: rgba(22, 31, 47, 0.82);
+  --glass-edge: rgba(148, 163, 184, 0.16);
+  --glass-edge-top: rgba(255, 255, 255, 0.2);
+  --glass-blur: 18px;
+  --glass-saturation: 140%;
+  --glass-contrast: 1.02;
+  --glass-highlight: rgba(255, 255, 255, 0.12);
+  --glass-inset-bottom: rgba(255, 255, 255, 0.03);
+  --glass-shadow: 0 18px 46px rgba(0, 0, 0, 0.3);
+  --glass-fallback: rgba(14, 20, 31, 0.94);
+  --glass-sheen: rgba(255, 255, 255, 0.08);
+  --nav-scrolled-fill: rgba(8, 14, 23, 0.72);
+  --nav-scrolled-blur: 18px;
+  --nav-scrolled-shadow: 0 14px 30px rgba(2, 4, 8, 0.28);
+  --button-fill: #edf4ff;
+  --button-text: #07111d;
+  --button-shadow: 0 12px 30px rgba(11, 18, 32, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.45);
   --ambient-mesh:
-    radial-gradient(ellipse at 14% 11%, rgba(38, 94, 164, 0.28), transparent 31%),
-    radial-gradient(ellipse at 82% 26%, rgba(22, 115, 122, 0.16), transparent 25%),
-    radial-gradient(ellipse at 73% 81%, rgba(133, 93, 44, 0.13), transparent 30%),
-    radial-gradient(ellipse at 27% 72%, rgba(47, 75, 127, 0.16), transparent 29%);
-  --page-wipe: rgba(151, 186, 227, 0.14);
+    radial-gradient(ellipse at 14% 12%, rgba(52, 98, 170, 0.18), transparent 30%),
+    radial-gradient(ellipse at 82% 22%, rgba(26, 147, 155, 0.12), transparent 25%),
+    radial-gradient(ellipse at 72% 82%, rgba(176, 133, 71, 0.11), transparent 27%),
+    radial-gradient(ellipse at 26% 68%, rgba(63, 93, 143, 0.09), transparent 28%);
+  --page-wipe: rgba(116, 169, 255, 0.09);
 }
 
 html[data-theme='light'] {
   color-scheme: light;
-  --page-bg: #dce5ee;
+  --page-bg: #edf3f9;
   --page-text: #18253a;
-  --page-muted: #3d4e65;
+  --page-muted: #465971;
   --page-subtle: #66758a;
-  --accent: #285a9c;
-  --accent-strong: #214b82;
-  --glass-fill: rgba(255, 255, 255, 0.38);
-  --glass-fill-hover: rgba(255, 255, 255, 0.44);
-  --glass-edge: rgba(24, 37, 58, 0.11);
-  --glass-edge-top: rgba(255, 255, 255, 0.88);
-  --glass-blur: 22px;
-  --glass-saturation: 200%;
-  --glass-contrast: 1.05;
-  --glass-highlight: rgba(255, 255, 255, 0.94);
-  --glass-inset-bottom: rgba(24, 37, 58, 0.08);
-  --glass-shadow: 0 12px 30px rgba(40, 60, 120, 0.12), 0 30px 80px rgba(40, 60, 120, 0.1);
-  --glass-fallback: rgba(231, 237, 244, 0.98);
-  --glass-sheen: rgba(255, 255, 255, 0.5);
-  --nav-scrolled-fill: rgba(238, 244, 250, 0.62);
-  --nav-scrolled-blur: 24px;
-  --nav-scrolled-shadow: 0 16px 36px rgba(40, 60, 120, 0.18);
-  --button-fill: #18253a;
-  --button-text: #f8fafc;
-  --button-shadow: 0 8px 22px rgba(40, 60, 120, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  --accent: #2d5ea8;
+  --accent-strong: #204d8a;
+  --glass-fill: rgba(255, 255, 255, 0.52);
+  --glass-fill-hover: rgba(255, 255, 255, 0.68);
+  --glass-edge: rgba(24, 37, 58, 0.1);
+  --glass-edge-top: rgba(255, 255, 255, 0.92);
+  --glass-blur: 16px;
+  --glass-saturation: 170%;
+  --glass-contrast: 1.04;
+  --glass-highlight: rgba(255, 255, 255, 0.8);
+  --glass-inset-bottom: rgba(24, 37, 58, 0.06);
+  --glass-shadow: 0 10px 26px rgba(31, 54, 92, 0.08), 0 24px 56px rgba(31, 54, 92, 0.08);
+  --glass-fallback: rgba(240, 244, 248, 0.96);
+  --glass-sheen: rgba(255, 255, 255, 0.42);
+  --nav-scrolled-fill: rgba(244, 248, 252, 0.76);
+  --nav-scrolled-blur: 18px;
+  --nav-scrolled-shadow: 0 12px 30px rgba(56, 78, 112, 0.1);
+  --button-fill: #172b42;
+  --button-text: #f7fafc;
+  --button-shadow: 0 10px 25px rgba(20, 36, 59, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   --ambient-mesh:
-    radial-gradient(ellipse at 13% 10%, rgba(61, 134, 202, 0.32), transparent 31%),
-    radial-gradient(ellipse at 83% 22%, rgba(48, 151, 147, 0.23), transparent 27%),
-    radial-gradient(ellipse at 77% 83%, rgba(214, 161, 94, 0.24), transparent 30%),
-    radial-gradient(ellipse at 25% 74%, rgba(104, 137, 183, 0.2), transparent 29%);
-  --page-wipe: rgba(255, 255, 255, 0.55);
+    radial-gradient(ellipse at 13% 10%, rgba(62, 123, 197, 0.2), transparent 28%),
+    radial-gradient(ellipse at 82% 22%, rgba(87, 166, 160, 0.16), transparent 24%),
+    radial-gradient(ellipse at 76% 80%, rgba(210, 160, 93, 0.15), transparent 24%),
+    radial-gradient(ellipse at 25% 74%, rgba(109, 136, 179, 0.12), transparent 24%);
+  --page-wipe: rgba(255, 255, 255, 0.54);
 }
 
 @layer base {
@@ -107,6 +110,8 @@ html[data-theme='light'] {
     background-attachment: fixed;
     color: var(--page-text);
     font-family: var(--font-sans);
+    font-size: 1.02rem;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color var(--duration-theme) var(--ease-natural), color var(--duration-theme) var(--ease-natural);
@@ -119,6 +124,19 @@ html[data-theme='light'] {
   .font-editorial {
     font-family: var(--font-serif);
     letter-spacing: -0.018em;
+    line-height: 0.96;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 5vw, 5.2rem);
+  }
+
+  h2 {
+    font-size: clamp(2.2rem, 3.2vw, 3.8rem);
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 2.2vw, 2.4rem);
   }
 
   a {

@@ -40,7 +40,7 @@ export default function ProjectCard({
     <div
       data-animate="fade-up"
       style={{ '--reveal-index': (id - 1) % 7 } as CSSProperties}
-      className={`group liquid-glass liquid-glass-interactive glass-specular rounded-2xl p-7 md:p-8 flex flex-col justify-between transition-all duration-300 ${layoutClass}`}
+      className={`group liquid-glass liquid-glass-interactive glass-specular rounded-[28px] p-5 md:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 ${layoutClass}`}
     >
       <div>
         {/* Header meta */}
@@ -48,8 +48,8 @@ export default function ProjectCard({
           <span className="editorial-pill font-mono text-[11px]">
             {displayCategory}
           </span>
-          <span className="font-mono text-xs text-slate-400">
-              Project 0{id}
+          <span className="font-mono text-[10px] tracking-[0.18em] uppercase text-slate-400">
+            Project 0{id}
           </span>
         </div>
 
@@ -59,12 +59,12 @@ export default function ProjectCard({
             target={project.link ? '_blank' : undefined}
             rel={project.link ? 'noopener noreferrer' : undefined}
             aria-label={project.link ? `Visit ${displayTitle} website` : `View ${displayTitle} project`}
-            className="block mb-5 overflow-hidden rounded-xl border border-slate-200/60 dark:border-white/10"
+            className="group/image block mb-5 overflow-hidden rounded-2xl border border-slate-200/70 dark:border-white/10 bg-slate-50/70 dark:bg-slate-900/50"
           >
             <img
               src={project.image}
               alt={`${displayTitle} project preview`}
-              className="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              className="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover/image:scale-[1.03]"
               loading="lazy"
             />
           </a>

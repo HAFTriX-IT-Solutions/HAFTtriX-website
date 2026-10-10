@@ -71,15 +71,15 @@ interface Program {
  * ------------------------------------------------------------------ */
 
 const config = {
-  SIM_RESOLUTION: 200,
-  DYE_RESOLUTION: 512,
-  DENSITY_DISSIPATION: 0.958,
-  VELOCITY_DISSIPATION: 0.96,
-  PRESSURE: 0.8,
-  PRESSURE_ITERATIONS: 20,
-  CURL: 42,
-  SPLAT_RADIUS: 0.22,
-  SPLAT_FORCE: 6000,
+  SIM_RESOLUTION: 180,
+  DYE_RESOLUTION: 460,
+  DENSITY_DISSIPATION: 0.963,
+  VELOCITY_DISSIPATION: 0.97,
+  PRESSURE: 0.72,
+  PRESSURE_ITERATIONS: 16,
+  CURL: 28,
+  SPLAT_RADIUS: 0.18,
+  SPLAT_FORCE: 4500,
   SHADING: true,
   COLORFUL: true,
   BLOOM: false,
@@ -93,19 +93,19 @@ const INK_SATURATION = 0.95;
 const INK_VALUE = 1.0;
 
 /** Auto-cursor orbit. */
-const ORBIT_RADIUS = 300;
-const ORBIT_SPEED = 0.026; // radians per frame @ 60fps
+const ORBIT_RADIUS = 240;
+const ORBIT_SPEED = 0.018; // radians per frame @ 60fps
 const ORBIT_START_DELAY = 700; // ms
 const ORBIT_COLOR_INTERVAL = 120; // ms
-const ORBIT_BRIGHTNESS = 3.2; // x relative to the base ink strength
-const ORBIT_RADIUS_SCALE = 0.22; // fraction of SPLAT_RADIUS for the brush
-const INK_BASE_STRENGTH = 0.15;
+const ORBIT_BRIGHTNESS = 2.4; // x relative to the base ink strength
+const ORBIT_RADIUS_SCALE = 0.18; // fraction of SPLAT_RADIUS for the brush
+const INK_BASE_STRENGTH = 0.12;
 
 /** Load burst. */
 const BURST_SPLATS = 34;
 const BURST_WAVES = 8;
 
-const MAX_DPR = 1.5;
+const MAX_DPR = 1.2;
 
 /* ------------------------------------------------------------------ *
  * Shaders

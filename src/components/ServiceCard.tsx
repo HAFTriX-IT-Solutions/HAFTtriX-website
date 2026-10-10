@@ -28,14 +28,14 @@ export default function ServiceCard({
     <div
       data-animate="fade-up"
       style={{ '--reveal-index': index } as CSSProperties}
-      className={`group liquid-glass liquid-glass-interactive glass-specular rounded-2xl p-7 md:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 ${layoutClass}`}
+      className={`group liquid-glass liquid-glass-interactive glass-specular rounded-[28px] p-6 md:p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 ${layoutClass}`}
     >
       <div>
         <div className="flex items-center justify-between mb-6">
-          <div className="w-12 h-12 rounded-xl liquid-glass flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform duration-300">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500/14 to-cyan-500/10 border border-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-300 group-hover:scale-105 transition-transform duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.35)]">
             <Icon className="h-5 w-5" />
           </div>
-          <span className="font-mono text-xs text-slate-400">
+          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-slate-400">
             0{index + 1}
           </span>
         </div>

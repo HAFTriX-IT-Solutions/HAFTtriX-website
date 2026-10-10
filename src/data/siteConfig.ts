@@ -10,6 +10,7 @@ export const siteConfig = {
   websiteUrl: 'https://haftrixit.dev',
   address: 'Ward no-1, Nilaveli, Trincomalee, Sri Lanka',
   country: 'Sri Lanka',
+  whatsappNumber: '94757849577',
   social: {
     facebook: 'https://facebook.com/haftrix',
     instagram: 'https://instagram.com/haftrix',
